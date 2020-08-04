@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Link to="/test">Test</Link>
-        <Link to="/test/test123">Test123</Link>
+        <Link to="/test/damir">Test123</Link>
         <button onClick={this.testUserLogin}>Login Damir</button>
       </div>
     );

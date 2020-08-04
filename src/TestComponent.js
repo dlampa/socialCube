@@ -8,14 +8,48 @@ class TestComponent extends React.Component {
         this.state = {
             userId: this.props.match.params.userid
         };
-    }
-    testFunction = () => {  console.log(this.props); console.log(this.props.match)}
+    };
+
+    doesUserExist = (user) => {
+        const userList = this.props.userData.map(userObject => Object.keys(userObject).toString());
+        return userList.indexOf(user) > -1 ? true : false;
+    };
+
+    /* This function iterates through the Redux store and: 
+         1. checks if the user exists 
+         2. if user exists, compares passwords. Match returns true, mismatch returns false 
+         3. if user does not exist, returns null */
+    isPasswordValid = (user, password) => {
+        if (this.doesUserExist(user)) {
+            const [isPasswordValid] = this.props.userData.map(userObject => {
+                const userIter = Object.keys(userObject).toString();
+                const { [userIter]: { auth: { password: dbPass } } } = userObject;
+                if (userIter === user) { return password === dbPass };
+            })
+            return isPasswordValid;
+        } else {
+            return null;
+        }
+    };
+
+    isPasswordValid2 = (user, password) => {
+        if (this.doesUserExist(user)) {
+            const [isPasswordValid] = this.props.userAuthInfo.map(userAuthObject => {
+                if (Object.keys(userAuthObject).toString() === user) { return (userAuthObject[user] === password); }
+            })
+            return isPasswordValid;
+        } else {
+            return null;
+        }
+    };
+
     render() {
         
         return (
             <>
-                {this.testFunction()}
-                <h1>Welcome {this.state.userId}</h1>  
+                <h1>{this.props.currentUser != null ? this.props.currentUser + "is currently logged in" : "noone is logged in"}</h1>
+                <h1>{this.doesUserExist("damir") ? "Damir Exists" : "Something's wrong"}</h1>
+                <h1>{this.isPasswordValid2("damir", "abc123") ? "Password is correct" : "Password is incorrect"}</h1>
             </>
         );
 
@@ -23,5 +57,28 @@ class TestComponent extends React.Component {
 }
 
 export default connect(
-    state => { return { userData: state } }
+    state => {
+        /*  Extract the name of the currently logged in user from the store. Uses object deconstructor 
+            to get the value of isLoggedIn stored into the var loginStatus. 
+         */
+        const [loggedInUser] =
+            state.map(userObject => {
+                const userIter = Object.keys(userObject).toString();
+                const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
+                if (loginStatus) { return userIter };
+            });
+        
+        const userAuthInfo = state.map(userObject => {
+            const userIter = Object.keys(userObject).toString();
+            const { [userIter]: { auth: { password: userPass } } } = userObject;
+            return { [userIter]: userPass };
+        })
+        
+        return {
+            userData: state,
+            users: state.map(userObject => Object.keys(userObject).toString()),
+            currentUser: loggedInUser,
+            userAuthInfo: userAuthInfo
+        }
+    }
 )(TestComponent);

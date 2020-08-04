@@ -19,18 +19,16 @@ import { populateStore } from './js';
 import App from './App';
 import TestComponent from './TestComponent';
 
-/* Redux global store */
+/* Redux global store, the async route is required because we're using an API to fetch the data that prepopulates the store.
+   Ref: https://stackoverflow.com/questions/37393176/redux-loading-initial-state-asynchronously */
+
 const createStoreAsync = async () => {
-  let store = createStore(userDataReducer, await populateStore(null), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  let store = createStore(
+    userDataReducer,
+    await populateStore(null),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); // Redux devtools - remove in "production"
   return await store;
 }
-
-// const store = createStore(
-//   userDataReducer,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-//   );
-  
-//populateStore(store);
 
 const Root = (store) => (
   <Provider store={store.store}>

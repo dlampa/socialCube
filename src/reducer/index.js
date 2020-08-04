@@ -25,8 +25,6 @@ Data structure ref. document "Site React component breakdown.pdf"
 
 */
 
-var abc;
-
 const userDataReducer = (state = [], action) => {
     switch (action.type) {
         case "ADD_USERDATA_TO_STORE":
