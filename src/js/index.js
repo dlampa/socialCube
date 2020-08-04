@@ -11,6 +11,7 @@ import axios from 'axios';
  * before it is processed
  * See functional description for more detail
  */
+
 async function populateStore(store) {
     
     // Random (or not so random) user data. Fancy names courtesy of https://www.fantasynamegenerators.com/roman_names.php
@@ -22,13 +23,14 @@ async function populateStore(store) {
     const sampleEmail = "noreply@samplesite.net";
     const newUsers = [];
     
-    // Create an object that represents a new store entry that fits the design template.
-    
+    // Create an object that represents a new store entry that fits the design template. It's important to use the index looping rather than for..of
+    // in order to use a single index to loop through several arrays. 
     for (let i = 0; i < sampleUsernames.length; i++) {
         const samplePostCount = 5; // Create 5 sample posts
-        const samplePostArray = await genRandomPosts({ postCount: samplePostCount });
-        const samplePosts = [];
+        const samplePostArray = await genRandomPosts({ postCount: samplePostCount }); // Get the posts from API
+        const samplePosts = []; // Array to which the sample posts for the user will be pushed
 
+        // Each sample post includes a timestamp. samplePostObject consists of two keys, timestamp and postText. The object is stored inside an array samplePosts
         for (let postNum = 0; postNum < samplePostCount; postNum++) {
             const samplePostObject = { timestamp: genRandomDate({ start: new Date(Date.now() - 3 * 24 * 3600 * 1000) }), postText: samplePostArray[postNum]};
             samplePosts.push(samplePostObject);
@@ -53,7 +55,7 @@ async function populateStore(store) {
         };
         newUsers.push(newUser);
     }
-    //store.dispatch(addToStore(newUsers));
+
     return newUsers;
 }
 
@@ -68,7 +70,7 @@ async function genRandomPosts({ postCount = 10 } = {}) {
     for (let i = 1; i <= postCount; i++) {
         // Use async/wait call to process API response. Ref. https://www.npmjs.com/package/axios
         const randomPostNumber = Math.floor(Math.random() * 99) + 1;
-        //const apiResponse =
+ 
         const apiResponse = await axios.get("https://jsonplaceholder.typicode.com/posts/" + randomPostNumber.toString());
         returnArray.push(apiResponse.data.body);
     }

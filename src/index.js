@@ -42,11 +42,12 @@ const Root = (store) => (
   </Provider>
 );
 
-createStoreAsync().then(result => {
-  const store = result;
-  ReactDOM.render(
-    <Root store={store} />,
-    document.getElementById("root")
-  );
+createStoreAsync().then(
+  result => {
+    const store = result;
+    ReactDOM.render(
+      <Root store={store} />,
+      document.getElementById("root")
+    );
   
 });

@@ -32,6 +32,7 @@ class TestComponent extends React.Component {
         }
     };
 
+    // this func uses userAuthInfo from the props instead of userData
     isPasswordValid2 = (user, password) => {
         if (this.doesUserExist(user)) {
             const [isPasswordValid] = this.props.userAuthInfo.map(userAuthObject => {
@@ -42,6 +43,13 @@ class TestComponent extends React.Component {
             return null;
         }
     };
+
+    // Get all posts for the user
+    getUserPosts = (user, count) => {
+        if (this.doesUserExist(user)) {
+
+        }
+    }
 
     render() {
         
@@ -72,7 +80,12 @@ export default connect(
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { auth: { password: userPass } } } = userObject;
             return { [userIter]: userPass };
-        })
+        });
+        
+        const userPosts = state.map(userObject => {
+            const userIter = Object.keys(userObject).toString();
+            const { [userIter]: { posts: userPosts } } = userObject;
+        });
         
         return {
             userData: state,
