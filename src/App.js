@@ -3,33 +3,37 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import UserLogin from './js/UserLogin';
-//import logo from '.img/logo';
-// <img src={logo} alt="Logo"> </img>
+import logo from './img/logo_lego.png'
+//import { Container, Row, Col } from 'reactstrap'; can we use this for CSS??
 
 import './css/App.css';
 
-class LoginPage extends React.Component {
-    render() {
-        return (
-            <article>
-                <section>
-                    <h1> Welcome to Lego Social</h1>
-                   
-                </section>
-                <article>
-                    <section className="UserLogin">
-                      <h2>Login</h2>
-                      <UserLogin
-                        />
-                      
-                    </section>
-                    <section className="UserSignup">
-                        <p> (User signup form Place holder)</p>
-                    </section>
-                </article>
-            </article>
-        );
-    }
+class App extends React.Component {
+  render() {
+    return (
+      <article>
+ 
+        <section>
+          <h1> Welcome to Lego Social</h1>
+          <img src={logo} alt="Logo" />
+         
+
+        </section>
+    
+        <article id="col">
+          <section className="UserLogin">
+            <h2>Login</h2>
+            <UserLogin
+            />
+
+          </section>
+          <section className="UserSignup">
+            <p> (User signup form Place holder)</p>
+          </section>
+        </article>
+      </article>
+    );
+  }
 
 }
 
@@ -45,5 +49,5 @@ class LoginPage extends React.Component {
 // }
 
 export default connect(
-    state => { return { userData: state }, { UserLogin: state } },
-)(LoginPage); // Name of the component (in this case: App.)} )(App);
+  state => { return { userData: state }, { UserLogin: state } },
+)(App); // Name of the component (in this case: App.)} )(App);

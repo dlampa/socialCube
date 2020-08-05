@@ -19,6 +19,14 @@ button {
         background-color: #0c1b33;
         color: white;
     }
+.column {
+        display: flex;
+        padding: 20pt;
+        background-image: ();
+        background-color: teal;
+
+    }
+    
      
     
 
