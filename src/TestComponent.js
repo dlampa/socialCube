@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 
 class TestComponent extends React.Component {
@@ -55,7 +56,8 @@ class TestComponent extends React.Component {
         
         return (
             <>
-                <h1>{this.props.currentUser != null ? this.props.currentUser + "is currently logged in" : "noone is logged in"}</h1>
+                <h1>{this.props.currentUser === this.state.userId ? "We have a user match" : "No user match"}</h1>
+                <h1>{this.props.currentUser} | {this.props.currentUser != null ? this.props.currentUser + " is currently logged in" : "noone is logged in"}</h1>
                 <h1>{this.doesUserExist("damir") ? "Damir Exists" : "Something's wrong"}</h1>
                 <h1>{this.isPasswordValid2("damir", "abc123") ? "Password is correct" : "Password is incorrect"}</h1>
             </>
@@ -64,17 +66,18 @@ class TestComponent extends React.Component {
     }
 }
 
-export default connect(
+export default withRouter(connect(
     state => {
         /*  Extract the name of the currently logged in user from the store. Uses object deconstructor 
             to get the value of isLoggedIn stored into the var loginStatus. 
+            Ref: https://stackoverflow.com/questions/28607451/removing-undefined-values-from-array
          */
-        const [loggedInUser] =
-            state.map(userObject => {
-                const userIter = Object.keys(userObject).toString();
-                const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
-                if (loginStatus) { return userIter };
-            });
+        const [loggedInUser] = state.map(userObject => {
+            const userIter = Object.keys(userObject).toString();
+            const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
+            if (loginStatus) { return userIter };
+        }).filter(userObject => (userObject !== undefined ));
+        
         
         const userAuthInfo = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
@@ -86,7 +89,9 @@ export default connect(
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { posts: userPosts } } = userObject;
         });
-        
+
+        console.log(loggedInUser);
+
         return {
             userData: state,
             users: state.map(userObject => Object.keys(userObject).toString()),
@@ -94,4 +99,4 @@ export default connect(
             userAuthInfo: userAuthInfo
         }
     }
-)(TestComponent);
+)(TestComponent));

@@ -18,6 +18,7 @@ import { populateStore } from './js';
 /* App components*/
 import App from './App';
 import TestComponent from './TestComponent';
+import UserSignup from './UserSignup';
 
 /* Redux global store, the async route is required because we're using an API to fetch the data that prepopulates the store.
    Ref: https://stackoverflow.com/questions/37393176/redux-loading-initial-state-asynchronously */
@@ -36,7 +37,8 @@ const Root = (store) => (
       <Route path="/" exact component={App} />
       <Switch>
         <Route path="/test/:userid" component={TestComponent} />
-        <Route path="/test" component={TestComponent} />
+        <Route path="/test/" component={TestComponent} />
+        <Route path="/signup" component={UserSignup} />
       </Switch>
     </Router>
   </Provider>
