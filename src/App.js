@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+
 
 import UserLogin from './js/UserLogin';
 import logo from './img/logo_lego.png'
+
 //import { Container, Row, Col } from 'reactstrap'; //can we use this for CSS??
+//import reducer from '../src/reducer';
 
 import './css/App.css';
 
@@ -12,29 +14,30 @@ class App extends React.Component {
   render() {
     return (
       <article className="login-container">
- 
+
         <section className="welcome-logo" >
           <h1> Welcome to Lego Social</h1>
           <div>
-          <img src={logo} alt="Logo" />
+            <img src={logo} alt="Logo" />
           </div>
-         
+
 
         </section>
-    
-        <article className="">
+
+        <article className="welcome-login-signup">
           <section className="UserLogin">
             <h2>Login</h2>
             <UserLogin
             />
-
           </section>
+
           <section className="UserSignup">
-          <h2>Sign Up</h2>
+            <h2>Sign Up</h2>
             <p> (User signup form Place holder)</p>
           </section>
         </article>
       </article>
+
     );
   }
 

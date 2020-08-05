@@ -19,37 +19,39 @@ class UserLogin extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
-  onChange(event) {
-       
-        this.setState({ [event.target.name] : event.target.value})
+    onChange(event) {
+
+        this.setState({ [event.target.name]: event.target.value }) // name key = value
     }
+    //confusion on dispatch
     onSubmit(event) {
         event.preventDefault();
 
         this.setState({ isLoggedin: true });
         const { username, password } = this.setState;
         if (username && password) {
-            this.props.dispatch(loginUser(username, password));// Dispatch an action (index/actions); 
+            this.props.dispatch( loginUser (username, password));// Dispatch an action (index/actions); I am unsure
         }
-      
+
     }
     render() {
+       
         return (
             <form onSubmit={this.onSubmit}>
                 <input type="text"
                     name="username"
                     placeholder="User Name"
                     value={this.state.username}
-                    onChange={event => this.onSubmit( 'username',event.target.value )}
+                    onChange={event => this.onSubmit('username', event.target.value)}
                     required
                 />
-                
+
 
                 <input type="password"
                     className="form-control"
                     name="password"
                     placeholder="Password"
-            
+
                     onChange={this.onSubmit}
                     required
                 />
@@ -60,4 +62,4 @@ class UserLogin extends React.Component {
     }
 }
 
-export default UserLogin;
+export default UserLogin; // connect redux?
