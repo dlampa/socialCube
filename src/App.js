@@ -4,23 +4,25 @@ import { Link } from 'react-router-dom';
 
 import UserLogin from './js/UserLogin';
 import logo from './img/logo_lego.png'
-//import { Container, Row, Col } from 'reactstrap'; can we use this for CSS??
+//import { Container, Row, Col } from 'reactstrap'; //can we use this for CSS??
 
 import './css/App.css';
 
 class App extends React.Component {
   render() {
     return (
-      <article>
+      <article className="login-container">
  
-        <section>
+        <section className="welcome-logo" >
           <h1> Welcome to Lego Social</h1>
+          <div>
           <img src={logo} alt="Logo" />
+          </div>
          
 
         </section>
     
-        <article id="col">
+        <article className="">
           <section className="UserLogin">
             <h2>Login</h2>
             <UserLogin
@@ -28,6 +30,7 @@ class App extends React.Component {
 
           </section>
           <section className="UserSignup">
+          <h2>Sign Up</h2>
             <p> (User signup form Place holder)</p>
           </section>
         </article>

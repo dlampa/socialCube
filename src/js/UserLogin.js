@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { loginUser } from '../actions/index';
+
+import { loginUser, logOffUser } from '../actions/index';
 
 class UserLogin extends React.Component {
     constructor(props) {
@@ -27,10 +27,11 @@ class UserLogin extends React.Component {
         event.preventDefault();
 
         this.setState({ isLoggedin: true });
-        const { username, password } = this.state;
+        const { username, password } = this.setState;
         if (username && password) {
             this.props.dispatch(loginUser(username, password));// Dispatch an action (index/actions); 
         }
+      
     }
     render() {
         return (
@@ -38,12 +39,11 @@ class UserLogin extends React.Component {
                 <input type="text"
                     name="username"
                     placeholder="User Name"
-                    
-                    onChange={this.onSubmit}
+                    value={this.state.username}
+                    onChange={event => this.onSubmit( 'username',event.target.value )}
                     required
                 />
                 
-
 
                 <input type="password"
                     className="form-control"

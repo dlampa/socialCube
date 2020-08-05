@@ -3,29 +3,36 @@ h1 {
     font-weight: bold;
     margin-bottom: 10pt;
     margin-top: 15pt;
-}
+    }
 h2 {
     font-size: 18pt;
     margin: 5pt;
 }
 button {
-        background-color:#dbfe87;
+        background-color:#def186;
         color:#000000;
- 
-
+        }
+.login-container{
+        display: flex;
+        flex-wrap: wrap;
     }
 .UserLogin {
         padding: 10pt;
-        background-color: #0c1b33;
+        background-color: #041c42;
         color: white;
     }
-.column {
-        display: flex;
-        padding: 20pt;
-        background-image: ();
-        background-color: teal;
+.UserSignup {
+        padding: 10pt;
 
     }
+.welcome-logo {
+        background-image: ();
+        background-color: #12ccda;
+        color:#ffff;
+
+	    flex: 1;
+    }
+
     
      
     
