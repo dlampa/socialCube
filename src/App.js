@@ -2,6 +2,7 @@ import React from 'react';
 import { connect }  from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginUser } from './actions';
+import  UserLogin from './js/UserLogin';
 
 import './css/App.css';
 
@@ -15,9 +16,8 @@ class App extends React.Component {
   {
     return (
       <div className="App">
-        <Link to="/test">Test</Link>
-        <Link to="/test/damir">Test123</Link>
-        <button onClick={this.testUserLogin}>Login Damir</button>
+        <UserLogin
+        />
       </div>
     );
   }
@@ -36,4 +36,5 @@ class App extends React.Component {
 // }
 
 export default connect(
-  state => { return { userData: state } } )(App);
+  state => { return { userData: state } , { UserLogin: state } },
+  )(App); // Name of the component (in this case: App.)} )(App);

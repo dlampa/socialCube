@@ -5,6 +5,7 @@
 import { addToStore, initStore }  from '../actions';
 import axios from 'axios';
 
+
 /**
  * populateStore - generate Redux store data 
  * Populates the redux global store with random user data. Need an async function to ensure data arrives, ref: https://scotch.io/tutorials/asynchronous-javascript-using-async-await

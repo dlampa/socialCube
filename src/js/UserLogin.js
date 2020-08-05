@@ -1,46 +1,57 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { loginUser } from '../actions/index';
 
-class UserLogin extends React.Component 
-{
+class UserLogin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            userName: ' ',
-            password: 'abc123 ',
-            errorMsg: 'Your username or password is incorrect, please try again',
-         };
 
-         this.onSubmit = this.onSubmit.bind //bind the this keyword to the event handler onSubmit
+        // Login status will reset when user logs out
+        //this.props.logout();
+
+        this.state = {
+            username: '',
+            password: '', //abc123
+            isLoggedin: false,
+        };
+
+        this.onSubmit = this.onSubmit.bind(this); //binds key to event listener
+        this.onChange = this.onChange.bind(this);
     }
-    //validInput()
+
+  onChange(event) {
+       
+        this.setState({ [event.target.name] : event.target.value})
+    }
     onSubmit(event) {
         event.preventDefault();
 
+        this.setState({ isLoggedin: true });
+        const { username, password } = this.state;
+        if (username && password) {
+            this.props.dispatch(loginUser(username, password));// Dispatch an action (index/actions); 
+        }
     }
-
     render() {
         return (
             <form onSubmit={this.onSubmit}>
-                
-                
                 <input type="text"
-                    className="form-control"
                     name="username"
                     placeholder="User Name"
-                    //value={username}
-                   // onChange={this.handleChange} 
-                   />
-
+                    
+                    onChange={this.onSubmit}
+                />
                 
+
+
                 <input type="password"
                     className="form-control"
                     name="password"
                     placeholder="Password"
-                    //value={password}
-                    //onChange={this.handleChange} 
-                    />
-<button>Login</button> 
+            
+                    onChange={this.onSubmit}
+                />
+                <button>Login</button>
 
             </form >
         );
