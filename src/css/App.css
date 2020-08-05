@@ -1,0 +1,24 @@
+h1 {
+    font-size: 25pt;
+    font-weight: bold;
+    margin-bottom: 10pt;
+    margin-top: 15pt;
+}
+h2 {
+    font-size: 18pt;
+    margin: 5pt;
+}
+button {
+        background-color:#dbfe87;
+        color:#000000;
+ 
+
+    }
+.UserLogin {
+        padding: 10pt;
+        background-color: #0c1b33;
+        color: white;
+    }
+     
+    
+

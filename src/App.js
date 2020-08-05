@@ -1,32 +1,41 @@
 import React from 'react';
-import { connect }  from 'react-redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loginUser } from './actions';
-import  UserLogin from './js/UserLogin';
+
+import UserLogin from './js/UserLogin';
+//import logo from '.img/logo';
+// <img src={logo} alt="Logo"> </img>
 
 import './css/App.css';
 
-class App extends React.Component {
-
-  testUserLogin = (user) => {
-    this.props.dispatch(loginUser("damir"));
-  }
-
-  render()
-  {
-    return (
-      <div className="App">
-        <UserLogin
-        />
-      </div>
-    );
-  }
+class LoginPage extends React.Component {
+    render() {
+        return (
+            <article>
+                <section>
+                    <h1> Welcome to Lego Social</h1>
+                   
+                </section>
+                <article>
+                    <section className="UserLogin">
+                      <h2>Login</h2>
+                      <UserLogin
+                        />
+                      
+                    </section>
+                    <section className="UserSignup">
+                        <p> (User signup form Place holder)</p>
+                    </section>
+                </article>
+            </article>
+        );
+    }
 
 }
 
 
 // function App() {
-  
+
 //   return (
 //     <div className="App">
 //       <Link to="/test">Test</Link>
@@ -36,5 +45,5 @@ class App extends React.Component {
 // }
 
 export default connect(
-  state => { return { userData: state } , { UserLogin: state } },
-  )(App); // Name of the component (in this case: App.)} )(App);
+    state => { return { userData: state }, { UserLogin: state } },
+)(LoginPage); // Name of the component (in this case: App.)} )(App);

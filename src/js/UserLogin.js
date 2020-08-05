@@ -40,6 +40,7 @@ class UserLogin extends React.Component {
                     placeholder="User Name"
                     
                     onChange={this.onSubmit}
+                    required
                 />
                 
 
@@ -50,6 +51,7 @@ class UserLogin extends React.Component {
                     placeholder="Password"
             
                     onChange={this.onSubmit}
+                    required
                 />
                 <button>Login</button>
 
