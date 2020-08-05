@@ -1,0 +1,7 @@
+/* Minimum CSS to get the page reasonably functional */
+
+form {
+    display: flex;
+    flex-flow: column wrap;
+
+}
