@@ -10,8 +10,7 @@ class UserPost extends React.Component
             post2: ' ',
             post3: ' ',
             post4: ' ',
-            post5: ' ',
-            name: ' ',
+            post5: ' '
         };
     }
 
@@ -20,7 +19,7 @@ class UserPost extends React.Component
         return(
             <li>
                 <h3>
-                <label for="Post 1">Post 1</label>
+                <label htmlFor="Post 1">Post 1</label>
                     <img src="img/profilepic1.jpg" alt="Avatar 1" />
                     <span>User Full Name</span>
                     <span>User Name</span>
@@ -32,7 +31,7 @@ class UserPost extends React.Component
                 </p>
 
                 <h3>
-                <label for="Post 2">Post 2</label>
+                <label htmlFor="Post 2">Post 2</label>
                     <img src="img/profilepic1.jpg" alt="Avatar 1" />
                     <span>User Full Name</span>
                     <span>User Name</span>
@@ -44,7 +43,7 @@ class UserPost extends React.Component
                 </p>
 
                 <h3>
-                <label for="Post 3">Post 3</label>
+                <label htmlFor="Post 3">Post 3</label>
                     <img src="img/profilepic1.jpg" alt="Avatar 1" />
                     <span>User Full Name</span>
                     <span>User Name</span>
@@ -56,7 +55,7 @@ class UserPost extends React.Component
                 </p>
 
                 <h3>
-                <label for="Post 4">Post 4</label>
+                <label htmlFor="Post 4">Post 4</label>
                     <img src="img/profilepic1.jpg" alt="Avatar 1" />
                     <span>User Full Name</span>
                     <span>User Name</span>
@@ -68,7 +67,7 @@ class UserPost extends React.Component
                 </p>
 
                 <h3>
-                <label for="Post 5">Post 5</label>
+                <label htmlFor="Post 5">Post 5</label>
                     <img src="img/profilepic1.jpg" alt="Avatar 1" />
                     <span>User Full Name</span>
                     <span>User Name</span>
@@ -84,4 +83,13 @@ class UserPost extends React.Component
     }
 }
 
-export default UserPost;
+ export default connect(
+    state => { 
+        return {
+        userData: state,
+        users: state.map(userObject => Object.keys(userObject).toString()),
+        currentUser: loggedInUser,
+        userAuthInfo: userAuthInfo
+    };
+}
+)
