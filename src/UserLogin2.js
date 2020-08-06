@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { loginUser } from './actions';
-import { logOffUser } from './actions';
+import { loginUser, logOffUser } from './actions';
 
 class UserLogin2 extends React.Component {
     constructor(props) {
@@ -51,52 +50,57 @@ class UserLogin2 extends React.Component {
         } else {
             // If false: display error message 
             this.setState({ errorLogin: 1 });
-        }
+        };
     };
+
     userLogoff = (event) => {
-        this.props.dispatch(logOffUser(this.state.loginUsername));
+        event.preventDefault();
+        this.props.dispatch(logOffUser(this.props.currentUser));
         this.props.history.push("/");
-    }
+    };
 
-    render() { //if statement
-        /* if not(user is logged in ) display logoff button only else display login form */
-        // is user logged out? 
-        // yes:
-        // my experiments LOL
-        //loginUser(this.state.loginUsername)
-        //this props? this state?
-        //isPasswordValid
-        //useLogin
-
-        if (this.userLogin) {
-
+    render() { 
+        // If user is logged in, display a log off button
+        if (this.props.currentUser) {
             return (
-                <form onSubmit={(event) => this.userLogoff(event)}>
+                <form onSubmit={(event) => this.userLogoff(event)} method="post" id="logOffForm">
                     <button>Log off</button>
                 </form>
             );
         }
-        else
+
+        // Otherwise, display a login form
+        else {
             return (
-                <form onSubmit={(event) => this.userLogin(event)}>
+                <form onSubmit={(event) => this.userLogin(event)} method="post" id="logOnForm">
                     <label htmlFor="loginUsername">Login:</label>
                     <input type="text" name="loginUsername" id="loginUsername" onChange={(event) => this.updateState(event)} />
                     <div className="errMsg" hidden={this.state.errorLogin === -1}>{this.state.errMsgLogin[this.state.errorLogin]}</div>
+
                     <label htmlFor="loginPassword">Password:</label>
                     <input type="password" name="loginPassword" id="loginPassword" onChange={(event) => this.updateState(event)} />
                     <div className="errMsg" hidden={this.state.errorLogin === -1}>{this.state.errMsgLogin[this.state.errorLogin]}</div>
+
                     <button>Login</button>
                     <button>Sign up</button>
                 </form>
 
             );
-            
+        }
+       
     }
 
 };
 
+
 export default withRouter(connect(
     (state) => {
+        const [loggedInUser] = state.map(userObject => {
+            const userIter = Object.keys(userObject).toString();
+            const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
+            if (loginStatus) { return userIter };
+        }).filter(userObject => (userObject !== undefined));
+
         const userAuthInfo = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { auth: { password: userPass } } } = userObject;
@@ -105,6 +109,7 @@ export default withRouter(connect(
 
         return {
             userData: state,
+            currentUser: loggedInUser,
             authInfo: userAuthInfo
         }
     }
