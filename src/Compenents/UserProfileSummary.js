@@ -5,6 +5,7 @@ import UserProfilePage from './UserProfilePage';
     //in <p>  populate userDescription, userEmail and userBirthday props passed in from UserProfilePage file. 
     // and use <span> inside each paragraph to seperate content for styling purposes. Use proper syntax.
     //added <a> href element to create a link for the userEmail so that it's clickable and can go straight to email. 
+    //should we write props like this?  profile:[userName: "Name Surname", description: "Climate and Environmental Scientist", contact:"email:name.surname@gmail.com" birth: "April 1, 1985"]
 
 class UserProfileSummary extends React.Component 
 {
@@ -29,5 +30,5 @@ class UserProfileSummary extends React.Component
         );
     }
 }
-export default UserProfileSummary
+export default UserProfileSummary;
     
