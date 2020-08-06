@@ -27,4 +27,4 @@ const logOffUser = (username) => {
     )
 }
 
-export { addToStore, loginUser } ;
+export { addToStore, loginUser, logOffUser } ;

@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-import UserLogin from './js/UserLogin';
-import logo from './img/logo_lego.png'
+import UserLogin2 from './UserLogin2';
+import logo from './img/PlaceholderLogo.png'
 
 //import { Container, Row, Col } from 'reactstrap'; //can we use this for CSS??
 //import reducer from '../src/reducer';
@@ -13,9 +13,9 @@ import './css/App.css';
 class App extends React.Component {
   render() {
     return (
-      <article className="login-container">
+      <article >
 
-        <section className="welcome-logo" >
+        <section >
           <h1> Welcome to Lego Social</h1>
           <div>
             <img src={logo} alt="Logo" />
@@ -24,16 +24,16 @@ class App extends React.Component {
 
         </section>
 
-        <article className="welcome-login-signup">
-          <section className="UserLogin">
+        <article>
+          <section >
             <h2>Login</h2>
-            <UserLogin
+            <UserLogin2
             />
           </section>
 
-          <section className="UserSignup">
+          <section>
             <h2>Sign Up</h2>
-            <p> (User signup form Place holder)</p>
+            <p> (User signup form will be here)</p>
           </section>
         </article>
       </article>
@@ -44,16 +44,6 @@ class App extends React.Component {
 }
 
 
-// function App() {
-
-//   return (
-//     <div className="App">
-//       <Link to="/test">Test</Link>
-//       <Link to="/test/test123">Test123</Link>
-//     </div>
-//   );
-// }
-
 export default connect(
-  state => { return { userData: state }, { UserLogin: state } },
+  state => { return { userData: state }},
 )(App); // Name of the component (in this case: App.)} )(App);
