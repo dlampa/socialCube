@@ -52,24 +52,6 @@ class TestComponent extends React.Component {
         }
     }
 
-    getUserProfile = (user) => {
-        if (user !== undefined) {
-            // Extract user profile information
-            const [{ [user]: userProfileItems }] = this.props.userProfiles.filter(userObject => Object.keys(userObject).toString() === user.toString());
-            // Save user profile information into the 
-            this.setState ({
-                userInfo: {
-                    userFullName: userProfileItems.fullName,
-                    userEmail: userProfileItems.emailAddress,
-                    userBirthday: userProfileItems.birthday,
-                    userProfilePicture: userProfileItems.profilePicture,
-                    userBriefSummary: userProfileItems.briefSummary
-                }
-            });      
-        }
-        return null;
-    }
-
     render() {
         const userInfo = this.getUserProfile(this.props.loggedInUser); // use this.props.profileUser (as a prop passed down from parent component)
         return (
@@ -113,6 +95,11 @@ export default withRouter(connect(
             const { [userIter]: { auth: { password: userPass } } } = userObject;
             return { [userIter]: userPass };
         });
+
+       // const userPosts = state.map(userObject => {
+       //     const userIter = Object.keys(userObject).toString();
+       //     const { [userIter]: { posts: userPosts } } = userObject;
+       // });
         
         const userPosts = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
