@@ -60,6 +60,27 @@ async function populateStore(store) {
 }
 
 /**
+ * genUserPosts - generates the array of post timestamp and post text
+ * @param {*} postCount : number of posts to fetch, equiv. to number of members in the array of posts
+ */
+async function genUserPosts({ postCount = 10 } = {}) {
+
+    // Generate the required number of sample posts
+    const samplePostArray = await genRandomPosts({ postCount: postCount });
+    // Where the sample posts will be stored before returning
+    let samplePosts = [];
+    
+    for (let postNum = 0; postNum < postCount; postNum++) {
+        // Generate the samplePostObject
+        const samplePostObject = { timestamp: genRandomDate({ start: new Date(Date.now() - 3 * 24 * 3600 * 1000) }), postText: samplePostArray[postNum] };
+        // PLace the samplePostObject in an array
+        samplePosts.push(samplePostObject);
+    }
+    return samplePosts;
+};
+
+
+/**
  * genRandomPosts - generate random posts using Axios library and jsonplaceholder API (https://jsonplaceholder.typicode.com/guide.html)
  * @param {*} postCount : number of posts to fetch, default 10
  */
@@ -99,4 +120,4 @@ function genRandomDate({ returnEpoch = false, start = "2020-01-01 00:00:00", end
     return (returnEpoch ? newDate.valueOf : newDate);
 }
 
-export { populateStore, genRandomDate };
+export { populateStore, genRandomDate, genRandomPosts, genUserPosts };

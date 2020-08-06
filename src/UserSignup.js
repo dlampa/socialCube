@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addToStore, loginUser } from './actions';
+import { addToStore } from './actions';
+import { genUserPosts } from './js';
 import './css/UserSignup.css';
 
 
@@ -49,7 +50,8 @@ class UserSignup extends React.Component
 
         // Regex expressions, ref. Milestone 1 and https://stackoverflow.com/a/42203701/12802214
         const regexIllegalChars = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
-        const regexValidEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        //const regexValidEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const regexValidEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
         /*  This could have been left to the browser to handle, but it is not possible to predict
             what kind of browser the user will be using and the level of checks that will take place */
@@ -107,10 +109,15 @@ class UserSignup extends React.Component
 
     };
 
+    newUserRandomPosts = async () => {
+        const userPosts = await genUserPosts({postCount: 5});
+        await this.setState({ newUserPosts: userPosts });
+    };
+
     createUser = (event) => {
         event.preventDefault();
         const newUsername = this.state.signUpFormUsername.toLowerCase();
-
+        
         // Insert if here to check that processUserData returns true in order to continue
 
         if (this.processUserData()) {
@@ -131,7 +138,7 @@ class UserSignup extends React.Component
                         profilePicture: "profilepic1.jpg",
                         briefSummary: this.state.signUpFormOneLineSum,
                     },
-                    posts: []
+                    posts: this.state.newUserPosts
                 }
             };
         
@@ -161,6 +168,8 @@ class UserSignup extends React.Component
 
     render()
     {
+        this.newUserRandomPosts();
+
         return (
             /* Insert a check here to see if there is a currently logged in user before proceeding */
             <form method="post" onSubmit={(event) => this.createUser(event)}>

@@ -96,7 +96,8 @@ export default withRouter(connect(
             userData: state,
             users: state.map(userObject => Object.keys(userObject).toString()),
             currentUser: loggedInUser,
-            userAuthInfo: userAuthInfo
+            userAuthInfo: userAuthInfo,
+            userPosts: userPosts
         }
     }
 )(TestComponent));
