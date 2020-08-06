@@ -13,7 +13,7 @@ class TestComponent extends React.Component {
 
     doesUserExist = (user) => {
         const userList = this.props.userData.map(userObject => Object.keys(userObject).toString());
-        return userList.indexOf(user) > -1 ? true : false;
+        return userList.indexOf(user) > -1;
     };
 
     /* This function iterates through the Redux store and: 
@@ -52,22 +52,51 @@ class TestComponent extends React.Component {
         }
     }
 
+    getUserProfile = (user) => {
+        if (user !== undefined) {
+            // Extract user profile information
+            const [{ [user]: userProfileItems }] = this.props.userProfiles.filter(userObject => Object.keys(userObject).toString() === user.toString());
+            // Save user profile information into the 
+            this.setState ({
+                userInfo: {
+                    userFullName: userProfileItems.fullName,
+                    userEmail: userProfileItems.emailAddress,
+                    userBirthday: userProfileItems.birthday,
+                    userProfilePicture: userProfileItems.profilePicture,
+                    userBriefSummary: userProfileItems.briefSummary
+                }
+            });      
+        }
+        return null;
+    }
+
     render() {
-        
+        const userInfo = this.getUserProfile(this.props.loggedInUser); // use this.props.profileUser (as a prop passed down from parent component)
         return (
             <>
                 <h1>{this.props.currentUser === this.state.userId ? "We have a user match" : "No user match"}</h1>
                 <h1>{this.props.currentUser} | {this.props.currentUser != null ? this.props.currentUser + " is currently logged in" : "noone is logged in"}</h1>
                 <h1>{this.doesUserExist("damir") ? "Damir Exists" : "Something's wrong"}</h1>
                 <h1>{this.isPasswordValid2("damir", "abc123") ? "Password is correct" : "Password is incorrect"}</h1>
+
+                {userInfo !== null ?
+                    <section>
+                        <h1>{userInfo.userFullName}</h1>
+                        <p>
+                            <span className="profileSummary">{userInfo.userBriefSummary}</span>
+                            <span className="profileEmail">{userInfo.userEmail}</span>
+                            <span className="profileBirthday">{userInfo.userBirthday.toLocaleDateString()}</span>
+                        </p>
+                    </section>
+                    : <div>No User Logged In</div>}
+
             </>
         );
 
     }
 }
-
 export default withRouter(connect(
-    state => {
+    (state, ownProps) => {
         /*  Extract the name of the currently logged in user from the store. Uses object deconstructor 
             to get the value of isLoggedIn stored into the var loginStatus. 
             Ref: https://stackoverflow.com/questions/28607451/removing-undefined-values-from-array
@@ -78,7 +107,7 @@ export default withRouter(connect(
             if (loginStatus) { return userIter };
         }).filter(userObject => (userObject !== undefined ));
         
-        
+
         const userAuthInfo = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { auth: { password: userPass } } } = userObject;
@@ -87,8 +116,31 @@ export default withRouter(connect(
         
         const userPosts = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
-            const { [userIter]: { posts: userPosts } } = userObject;
+            const { [userIter]: { posts: userPostItems } } = userObject;
+            return { [userIter]: userPostItems };
         });
+
+        const userProfiles = state.map(userObject => {
+            const userIter = Object.keys(userObject).toString();
+            const { [userIter]: { profile: userProfileItems } } = userObject;
+            return { [userIter]: userProfileItems };
+        });
+
+        let userInfo;
+        if (ownProps.match.params.userid !== undefined) {
+            const user = ownProps.match.params.userid;
+            // Extract user profile information
+            const [{ [user]: userProfileItems }] = userProfiles.filter(userObject => Object.keys(userObject).toString() === user.toString());
+            // Save user profile information into the 
+            userInfo = ({
+                userFullName: userProfileItems.fullName,
+                userEmail: userProfileItems.emailAddress,
+                userBirthday: userProfileItems.birthday,
+                userProfilePicture: userProfileItems.profilePicture,
+                userBriefSummary: userProfileItems.briefSummary
+            });
+        }
+
 
         console.log(loggedInUser);
 
@@ -97,7 +149,9 @@ export default withRouter(connect(
             users: state.map(userObject => Object.keys(userObject).toString()),
             currentUser: loggedInUser,
             userAuthInfo: userAuthInfo,
-            userPosts: userPosts
+            userPosts: userPosts,
+            userProfiles: userProfiles,
+            userInfo: userInfo
         }
     }
 )(TestComponent));

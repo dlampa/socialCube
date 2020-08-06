@@ -44,7 +44,7 @@ class UserSignup extends React.Component
 
     /*  This function checks for errors in the user supplied data on the form and returns true if values are 
         suitable for further processing. Used by CreateUser method */
-    processUserData = (event) => {
+    processUserData = () => {
         // Variable which will contain error state. Allows for processing of all errors before stopping
         let noError = true;
 
