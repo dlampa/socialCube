@@ -9,4 +9,22 @@ const addToStore = (userData) => {
     );
 }
 
-export default addToStore;
+const loginUser = (username) => {
+    return (
+        {
+            type: "LOGIN_USER",
+            payload: username
+        }
+    )
+}
+
+const logOffUser = (username) => {
+    return (
+        {
+            type: "LOGOFF_USER",
+            payload: username
+        }
+    )
+}
+
+export { addToStore, loginUser } ;
