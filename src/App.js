@@ -17,6 +17,8 @@ class App extends React.Component {
       <div className="App">
         <Link to="/test">Test</Link>
         <Link to="/test/damir">Test123</Link>
+        <Link to="/profile/damir">Damir profile</Link>
+        <Link to="/profile/muzaffar">Muzaffar profile</Link>
         <button onClick={this.testUserLogin}>Login Damir</button>
       </div>
     );

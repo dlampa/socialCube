@@ -1,15 +1,10 @@
-import React, {Compoenent} from "react";
-import SiteNav from "./SiteNav";
-import UserProfileSummary from './component/UserProfileSummary';
-import UserProfileDetail from './component/UserProfileDetail';
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-//import userLogin2 from './userLogin2'; ?????
-//import profilePic from './img/PlaceHolderProfile.png' (image not yet saved for UserProfileSummary page)
-//import {Router} from "react-router-dom";
+import "./css/UserProfilePage.css";
 
-//plan: Redirect to the User Profile page after login validation
-//      export router. 
-
+import UserProfileSummary from './UserProfileSummary';
 
 class UserProfilePage extends React.Component {
     constructor(props){
@@ -25,27 +20,36 @@ class UserProfilePage extends React.Component {
    //Add a profile image. Image not saved which is why there's ??
    //username should be passed to userProfileSummary and details
     render() {
-        return (
-            <> 
-                <SiteNav />
-                <article>
-                    <UserProfileSummary userProfile={}/>
-                    <UserProfileDetail userProfile={}/>
-                </article>
-            </>
-        );// first section of article is userProfileSummary
+
+        // Check if there is an actively logged in user 
+        //if (this.props.loggedInUser !== undefined) {
+            // If true: display the profile page for the user in the address request
+            return (
+                <>
+                    {/* <SiteNav /> */}
+                    <article>
+                        <UserProfileSummary userProfile={this.state.pageUserId}/>
+                        {/* <UserProfileDetail userProfile={this.state.pageUserId}/> */}
+                    </article>
+                </>
+            );
+        //} else {
+            // If false: send the user to the LoginPage (App.js or "/" )
+        //    this.props.history.push("/");
+        //    return null;
+        //}
     }
 }
 export default withRouter(connect(
     (state) => {
         const [loggedInUser] = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
-            const { [userInter]: { auth: {isLoggedIn: loginStatus }}} = userObject;
-            if (loginStatus) { return userInter };
+            const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
+            if (loginStatus) { return userIter };
         }).filter(userObject => (userObject != undefined));
         
         return ({
             currentUser: loggedInUser
         });
     }
-))
+)(UserProfilePage));
