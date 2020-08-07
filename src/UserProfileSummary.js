@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import profilePicture from './img/profilepic5.jpg';
+import './css/App.css';
 
 
 // This component receives a username prop from the parent (UserProfilePage)
@@ -32,6 +34,7 @@ class UserProfileSummary extends React.Component
                     <span>{this.props.userInfo.userProfilePicture}</span>
                     <span>{this.props.userInfo.userBriefSummary}</span>
                 </p>
+                <img src={profilePicture} alt="Profile" />
             </section>
         ); 
     }

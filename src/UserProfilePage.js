@@ -16,9 +16,6 @@ class UserProfilePage extends React.Component {
         };
         
     }
-   //write in html format the page header and content for UserProfilePage
-   //Add a profile image. Image not saved which is why there's ??
-   //username should be passed to userProfileSummary and details
     render() {
 
         // Check if there is an actively logged in user 
@@ -26,10 +23,9 @@ class UserProfilePage extends React.Component {
             // If true: display the profile page for the user in the address request
             return (
                 <>
-                    {/* <SiteNav /> */}
+                    {<SiteNav />}
                     <article>
                         <UserProfileSummary userProfile={this.state.pageUserId}/>
-                        {/* <UserProfileDetail userProfile={this.state.pageUserId}/> */}
                     </article>
                 </>
             );
