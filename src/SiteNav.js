@@ -2,8 +2,6 @@ import React from 'react';
 import UserLogin2 from './UserLogin2';
 import Search from './Search';
 
-
-import logo from './img/nav_logo.png';
 import './css/App.css';
 
 class SiteNav extends React.Component {
@@ -13,7 +11,7 @@ class SiteNav extends React.Component {
                 <ul className="nav-list">
                    
                     <li>
-                        <img src={logo} alt="Logo" />
+                        <img src={require ("./img/nav_logo.png")} alt="navigation-logo" />
                     </li>
                     <li>
                         <UserLogin2 />
