@@ -84,7 +84,6 @@ class TestComponent extends React.Component {
                     { /* Randomize selection of posts, based on length of the array of all usernames 
                     const randPosterCount = Math.floor(Math.random() * (this.props.users.length - 1) + 1 ); */
 
-                        ["damir", "danielle", "saida", "muzaffar" ...]
 
                  }
                 </section>
