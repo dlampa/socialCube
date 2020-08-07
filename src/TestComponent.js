@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import TestComponent2 from './TestComponent2';
+import TestComponent3 from './TestComponent3';
 
 class TestComponent extends React.Component {
     constructor(props) {
@@ -52,44 +53,13 @@ class TestComponent extends React.Component {
 
         }
     }
-
-    genUserPosts = (users) => {
-        // // Find the posts from the selected user
-        // for (const user of users) {
-        //     //if (this.doesUserExist(user)) {
-        //         userPosts.forEach(userPostColl => {
-        //             if (Object.keys(userPostColl).toString() === user) {
-        //                 const [{ [user]: postCollection }] = userPosts;
-        //                 return (
-        //                     <ul>
-        //                         <li>{postCollection.forEach(
-        //                             userPost => (
-        //                                 <>
-        //                                     <time>{userPost.timestamp.toLocaleDateString}</time>
-        //                                     <span>{userPost.postText}</span>
-        //                                 </>
-        //                             )
-        //                         )}
-        //                         </li>
-        //                     </ul>
-        //                 );
-        //             }
-        //        // }
-        // // } else if (user === null) {
-        //         // Gener ate posts for a selection of users
-
-        //    }
-        // }
-    }
-
+    
     render() {
         //const userInfo = this.getUserProfile(this.props.loggedInUser); // use this.props.profileUser (as a prop passed down from parent component)
         return (
             <>
                 <h1>{this.props.currentUser === this.state.userId ? "We have a user match" : "No user match"}</h1>
                 <h1>{this.props.currentUser} | {this.props.currentUser != null ? this.props.currentUser + " is currently logged in" : "noone is logged in"}</h1>
-                <h1>{this.doesUserExist("damir") ? "Damir Exists" : "Something's wrong"}</h1>
-                <h1>{this.isPasswordValid2("damir", "abc123") ? "Password is correct" : "Password is incorrect"}</h1>
 
                     <section>
                         <h1>{this.props.userInfo.userFullName}</h1>
@@ -103,11 +73,28 @@ class TestComponent extends React.Component {
                 <section>
                     <ul>
                         {this.props.userPosts.damir.map(userPostData => {
-                            console.log("here");
-                            return (<TestComponent2 userInfo={this.props.userInfo} userPost={userPostData} />);
+                            //return (<TestComponent2 userInfo={this.props.userInfo} userPost={userPostData} />);
                         })}
                         {/* {this.genUserPosts("damir")} */}
                     </ul>
+                </section>
+
+
+                <section>
+                    <TestComponent3 user="damir" postCount="3" />
+                </section>
+
+                {/* TimeLine page demo follows 
+                    This page should show all the posts from a random selection of the users, except user's own posts.
+                */}
+
+                <section>
+                    { /* Randomize selection of posts, based on length of the array of all usernames */
+                    const randPosterCount = Math.floor(Math.random() * (this.props.users.length - 1) + 1 );
+
+                        
+
+                 }
                 </section>
 
             </>

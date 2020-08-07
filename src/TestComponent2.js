@@ -1,12 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
+// This is UserPost
 class TestComponent2 extends React.Component {
     render()
     {
+        // Take the values of various props and display them in a semantically meaningful way
         return (
-            <li><img src={require("./img/" + this.props.userInfo.userProfilePicture)} alt={this.props.userInfo.userFullName} className="postProfilePic" />
-                <span className="postFullName">{this.props.userInfo.userFullName}</span><span className="postUsername">{this.props.userInfo.username}</span>
+            <li><img src={require("./img/" + this.props.userInfo.profilePicture)} alt={this.props.userInfo.fullName} className="postProfilePic" />
+                <span className="postFullName">{this.props.userInfo.fullName}</span><span className="postUsername">{this.props.userInfo.user}</span>
                 <time className="postTimestamp">{this.props.userPost.timestamp.toLocaleDateString()}</time>
                 <span className="postText">{this.props.userPost.postText}</span>
             </li>
@@ -16,11 +17,4 @@ class TestComponent2 extends React.Component {
 
 }
 
-export default connect(
-    (state, ownProps) => {
-        
-        return {
-
-        };
-    }
-)(TestComponent2);
+export default TestComponent2;
