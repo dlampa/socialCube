@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import TestComponent2 from './TestComponent2';
-import TestComponent3 from './TestComponent3';
+import UserPosts from './UserPosts';
 
 class TestComponent extends React.Component {
     constructor(props) {
@@ -61,14 +60,7 @@ class TestComponent extends React.Component {
                 <h1>{this.props.currentUser === this.state.userId ? "We have a user match" : "No user match"}</h1>
                 <h1>{this.props.currentUser} | {this.props.currentUser != null ? this.props.currentUser + " is currently logged in" : "noone is logged in"}</h1>
 
-                    <section>
-                        <h1>{this.props.userInfo.userFullName}</h1>
-                        <p>
-                            <span className="profileSummary">{this.props.userInfo.userBriefSummary}</span>
-                            <span className="profileEmail">{this.props.userInfo.userEmail}</span>
-                            <span className="profileBirthday">{this.props.userInfo.userBirthday.toLocaleDateString()}</span>
-                        </p>
-                </section>
+                   
                 
                 <section>
                     <ul>
@@ -81,7 +73,7 @@ class TestComponent extends React.Component {
 
 
                 <section>
-                    <TestComponent3 user="damir" postCount="3" />
+                    <UserPosts userName="damir" postCount="3" />
                 </section>
 
                 {/* TimeLine page demo follows 
@@ -89,10 +81,10 @@ class TestComponent extends React.Component {
                 */}
 
                 <section>
-                    { /* Randomize selection of posts, based on length of the array of all usernames */
-                    const randPosterCount = Math.floor(Math.random() * (this.props.users.length - 1) + 1 );
+                    { /* Randomize selection of posts, based on length of the array of all usernames 
+                    const randPosterCount = Math.floor(Math.random() * (this.props.users.length - 1) + 1 ); */
 
-                        
+                        ["damir", "danielle", "saida", "muzaffar" ...]
 
                  }
                 </section>
