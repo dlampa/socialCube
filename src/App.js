@@ -1,31 +1,61 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import UserLogin2 from './UserLogin2';
+import UserLogin from './UserLogin';
+import UserSignup from './UserSignup';
 
-import logo from './img/PlaceholderLogo.png'
+import Logo from './img/PlaceholderLogo.png'
 import './css/App.css';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showLogin: false,
+      showSignup: false
+    }
+  }
+  retLogin = () => this.setState({ showLogin: true, showSignup: false });
+  retSignUp = () => this.setState({ showLogin: false, showSignup: true });
+  
   render() {
     return (
       <main>
 
+        {/* Logo is always shown on page */}
         <section>
-          <h1> Welcome to Lego Social</h1>
-          <img src={logo} alt="Logo" />
+          <img src={Logo} alt="Site Logo" />
+          <h1>Social network</h1>
         </section>
-
+    
         <section>
-          <h2>Login</h2>
-          <UserLogin2 />
+          
+          {/* Startup scenario - display two buttons, giving a choice to Login or to Sign up */}
+          {(!(this.state.showLogin || this.state.showSignup)) ?
+            <>
+              <button onClick={this.retLogin}>Login</button>
+              <button onClick={this.retSignUp}>Sign up</button>
+            </>
+            : null}
+          
+          {/* Display UserLogin component with a Sign Up button */}
+          {this.state.showLogin ?
+            <>
+              <UserLogin /> 
+              <button onClick={this.retSignUp}>Sign up</button>
+            </>
+            : null}
+          
+          {/* Display UserSignup component with a Login button */}
+          {this.state.showSignup ?
+            <>
+              <UserSignup /> 
+              <button onClick={this.retLogin}>Login</button>
+            </>
+            : null}
+        
         </section>
-
-        <section>
-          <h2>Sign Up</h2>
-          <p>(User signup form will be here)</p>
-        </section>
-
+        
       </main>
 
     );
@@ -33,7 +63,4 @@ class App extends React.Component {
 
 }
 
-
-export default connect(
-  state => { return { userData: state }},
-)(App); // Name of the component (in this case: App.)} )(App);
+export default App;

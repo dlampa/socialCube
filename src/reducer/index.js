@@ -34,7 +34,7 @@ const userDataReducer = (state = [], action) => {
             const storeSnapshot = Array.from(state);
             // Add new object to the array (validation happens outside reducer func.)
             for (let payloadItem of action.payload) {
-                storeSnapshot.push(...action.payload);
+                storeSnapshot.push(payloadItem);
             }
             return storeSnapshot;
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import TestComponent2 from './TestComponent2';
 
 class TestComponent extends React.Component {
     constructor(props) {
@@ -52,8 +53,37 @@ class TestComponent extends React.Component {
         }
     }
 
+    genUserPosts = (users) => {
+        // // Find the posts from the selected user
+        // for (const user of users) {
+        //     //if (this.doesUserExist(user)) {
+        //         userPosts.forEach(userPostColl => {
+        //             if (Object.keys(userPostColl).toString() === user) {
+        //                 const [{ [user]: postCollection }] = userPosts;
+        //                 return (
+        //                     <ul>
+        //                         <li>{postCollection.forEach(
+        //                             userPost => (
+        //                                 <>
+        //                                     <time>{userPost.timestamp.toLocaleDateString}</time>
+        //                                     <span>{userPost.postText}</span>
+        //                                 </>
+        //                             )
+        //                         )}
+        //                         </li>
+        //                     </ul>
+        //                 );
+        //             }
+        //        // }
+        // // } else if (user === null) {
+        //         // Gener ate posts for a selection of users
+
+        //    }
+        // }
+    }
+
     render() {
-        const userInfo = this.getUserProfile(this.props.loggedInUser); // use this.props.profileUser (as a prop passed down from parent component)
+        //const userInfo = this.getUserProfile(this.props.loggedInUser); // use this.props.profileUser (as a prop passed down from parent component)
         return (
             <>
                 <h1>{this.props.currentUser === this.state.userId ? "We have a user match" : "No user match"}</h1>
@@ -61,16 +91,24 @@ class TestComponent extends React.Component {
                 <h1>{this.doesUserExist("damir") ? "Damir Exists" : "Something's wrong"}</h1>
                 <h1>{this.isPasswordValid2("damir", "abc123") ? "Password is correct" : "Password is incorrect"}</h1>
 
-                {userInfo !== null ?
                     <section>
-                        <h1>{userInfo.userFullName}</h1>
+                        <h1>{this.props.userInfo.userFullName}</h1>
                         <p>
-                            <span className="profileSummary">{userInfo.userBriefSummary}</span>
-                            <span className="profileEmail">{userInfo.userEmail}</span>
-                            <span className="profileBirthday">{userInfo.userBirthday.toLocaleDateString()}</span>
+                            <span className="profileSummary">{this.props.userInfo.userBriefSummary}</span>
+                            <span className="profileEmail">{this.props.userInfo.userEmail}</span>
+                            <span className="profileBirthday">{this.props.userInfo.userBirthday.toLocaleDateString()}</span>
                         </p>
-                    </section>
-                    : <div>No User Logged In</div>}
+                </section>
+                
+                <section>
+                    <ul>
+                        {this.props.userPosts.damir.map(userPostData => {
+                            console.log("here");
+                            return (<TestComponent2 userInfo={this.props.userInfo} userPost={userPostData} />);
+                        })}
+                        {/* {this.genUserPosts("damir")} */}
+                    </ul>
+                </section>
 
             </>
         );
@@ -86,8 +124,8 @@ export default withRouter(connect(
         const [loggedInUser] = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
-            if (loginStatus) { return userIter };
-        }).filter(userObject => (userObject !== undefined ));
+            if (loginStatus) { return userIter } else { return null };
+        }).filter(userObject => (userObject !== null ));
         
 
         const userAuthInfo = state.map(userObject => {
@@ -96,17 +134,12 @@ export default withRouter(connect(
             return { [userIter]: userPass };
         });
 
-       // const userPosts = state.map(userObject => {
-       //     const userIter = Object.keys(userObject).toString();
-       //     const { [userIter]: { posts: userPosts } } = userObject;
-       // });
-        
-        const userPosts = state.map(userObject => {
+        const [userPosts] = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { posts: userPostItems } } = userObject;
             return { [userIter]: userPostItems };
         });
-
+        
         const userProfiles = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { profile: userProfileItems } } = userObject;
@@ -120,6 +153,7 @@ export default withRouter(connect(
             const [{ [user]: userProfileItems }] = userProfiles.filter(userObject => Object.keys(userObject).toString() === user.toString());
             // Save user profile information into the 
             userInfo = ({
+                username: user,
                 userFullName: userProfileItems.fullName,
                 userEmail: userProfileItems.emailAddress,
                 userBirthday: userProfileItems.birthday,
@@ -127,9 +161,6 @@ export default withRouter(connect(
                 userBriefSummary: userProfileItems.briefSummary
             });
         }
-
-
-        console.log(loggedInUser);
 
         return {
             userData: state,

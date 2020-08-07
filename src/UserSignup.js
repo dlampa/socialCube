@@ -134,7 +134,7 @@ class UserSignup extends React.Component
                     profile: {
                         fullName: this.state.signUpFormFullName,
                         emailAddress: this.state.signUpFormEmail,
-                        birthday: this.state.signUpFormBirthday,
+                        birthday: new Date(this.state.signUpFormBirthday),
                         profilePicture: "profilepic1.jpg",
                         briefSummary: this.state.signUpFormOneLineSum,
                     },
@@ -158,6 +158,7 @@ class UserSignup extends React.Component
     /*  Function used for the form element onChange event - update the state var based on <input> name property and value
         determined from the event */
     updateStateFromEvent = (event) => {
+        
         // Update the state variable
         this.setState({ [event.target.name]: event.target.value });
 
@@ -168,6 +169,7 @@ class UserSignup extends React.Component
 
     render()
     {
+        // Generate random posts for the new user
         this.newUserRandomPosts();
 
         return (
@@ -214,7 +216,6 @@ class UserSignup extends React.Component
                
                 {/* Sign Up button */}
                 <button>Sign up</button>
-                <button>Sign in</button>
                 
             </form>      
         );
@@ -230,8 +231,8 @@ export default withRouter(connect(
         const [loggedInUser] = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
-            if (loginStatus) { return userIter };
-        }).filter(userObject => (userObject !== undefined));
+            if (loginStatus) { return userIter } else { return null };
+        }).filter(userObject => (userObject !== null)) 
 
         const usersList = state.map(userObject => Object.keys(userObject).toString());
 
