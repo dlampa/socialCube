@@ -28,13 +28,12 @@ class UserProfileSummary extends React.Component
         return (
             <section>
                 <h1>{this.props.userInfo.userFullName}</h1>
-                <p>
+                <p> 
                     <span><a href={"mailto:" + this.props.userInfo.userEmail}>{this.props.userInfo.userEmail}</a></span>
                     <span>{this.props.userInfo.userBirthday.toLocaleDateString()}</span>
                     <span>{this.props.userInfo.userProfilePicture}</span>
                     <span>{this.props.userInfo.userBriefSummary}</span>
                 </p>
-                <img src={profilePicture} alt="Profile" />
             </section>
         ); 
     }

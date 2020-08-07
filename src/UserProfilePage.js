@@ -13,6 +13,7 @@ class UserProfilePage extends React.Component {
         //define state for userProfileInfo
         this.state = { 
             pageUserId: this.props.match.params.userid
+            //pageUserPhoto: this.props.match.param.userphoto; -------->check with Damir for the actual store component so it matches
         };
         
     }
