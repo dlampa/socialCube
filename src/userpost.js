@@ -32,7 +32,7 @@ class UserPost extends React.Component
 
                 <h3>
                 <label htmlFor="Post 2">Post 2</label>
-                    <img src="img/profilepic1.jpg" alt="Avatar 1" />
+                    <img src="img/profilepic1.jpg" alt="Avatar 2" />
                     <span>User Full Name</span>
                     <span>User Name</span>
                     <time datetime="2020-08-05 10:31:33"></time>
@@ -44,7 +44,7 @@ class UserPost extends React.Component
 
                 <h3>
                 <label htmlFor="Post 3">Post 3</label>
-                    <img src="img/profilepic1.jpg" alt="Avatar 1" />
+                    <img src="img/profilepic1.jpg" alt="Avatar 3" />
                     <span>User Full Name</span>
                     <span>User Name</span>
                     <time datetime="2020-08-05 10:31:33"></time>
@@ -56,7 +56,7 @@ class UserPost extends React.Component
 
                 <h3>
                 <label htmlFor="Post 4">Post 4</label>
-                    <img src="img/profilepic1.jpg" alt="Avatar 1" />
+                    <img src="img/profilepic1.jpg" alt="Avatar 4" />
                     <span>User Full Name</span>
                     <span>User Name</span>
                     <time datetime="2020-08-05 10:31:33"></time>
@@ -68,7 +68,7 @@ class UserPost extends React.Component
 
                 <h3>
                 <label htmlFor="Post 5">Post 5</label>
-                    <img src="img/profilepic1.jpg" alt="Avatar 1" />
+                    <img src="img/profilepic1.jpg" alt="Avatar 5" />
                     <span>User Full Name</span>
                     <span>User Name</span>
                     <time datetime="2020-08-05 10:31:33"></time>
