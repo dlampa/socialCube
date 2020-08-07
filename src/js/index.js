@@ -5,12 +5,14 @@
 import { addToStore, initStore }  from '../actions';
 import axios from 'axios';
 
+
 /**
  * populateStore - generate Redux store data 
  * Populates the redux global store with random user data. Need an async function to ensure data arrives, ref: https://scotch.io/tutorials/asynchronous-javascript-using-async-await
  * before it is processed
  * See functional description for more detail
  */
+
 async function populateStore(store) {
     
     // Random (or not so random) user data. Fancy names courtesy of https://www.fantasynamegenerators.com/roman_names.php
@@ -22,13 +24,14 @@ async function populateStore(store) {
     const sampleEmail = "noreply@samplesite.net";
     const newUsers = [];
     
-    // Create an object that represents a new store entry that fits the design template.
-    
+    // Create an object that represents a new store entry that fits the design template. It's important to use the index looping rather than for..of
+    // in order to use a single index to loop through several arrays. 
     for (let i = 0; i < sampleUsernames.length; i++) {
         const samplePostCount = 5; // Create 5 sample posts
-        const samplePostArray = await genRandomPosts({ postCount: samplePostCount });
-        const samplePosts = [];
+        const samplePostArray = await genRandomPosts({ postCount: samplePostCount }); // Get the posts from API
+        const samplePosts = []; // Array to which the sample posts for the user will be pushed
 
+        // Each sample post includes a timestamp. samplePostObject consists of two keys, timestamp and postText. The object is stored inside an array samplePosts
         for (let postNum = 0; postNum < samplePostCount; postNum++) {
             const samplePostObject = { timestamp: genRandomDate({ start: new Date(Date.now() - 3 * 24 * 3600 * 1000) }), postText: samplePostArray[postNum]};
             samplePosts.push(samplePostObject);
@@ -53,9 +56,30 @@ async function populateStore(store) {
         };
         newUsers.push(newUser);
     }
-    //store.dispatch(addToStore(newUsers));
+
     return newUsers;
 }
+
+/**
+ * genUserPosts - generates the array of post timestamp and post text
+ * @param {*} postCount : number of posts to fetch, equiv. to number of members in the array of posts
+ */
+async function genUserPosts({ postCount = 10 } = {}) {
+
+    // Generate the required number of sample posts
+    const samplePostArray = await genRandomPosts({ postCount: postCount });
+    // Where the sample posts will be stored before returning
+    let samplePosts = [];
+    
+    for (let postNum = 0; postNum < postCount; postNum++) {
+        // Generate the samplePostObject
+        const samplePostObject = { timestamp: genRandomDate({ start: new Date(Date.now() - 3 * 24 * 3600 * 1000) }), postText: samplePostArray[postNum] };
+        // PLace the samplePostObject in an array
+        samplePosts.push(samplePostObject);
+    }
+    return samplePosts;
+};
+
 
 /**
  * genRandomPosts - generate random posts using Axios library and jsonplaceholder API (https://jsonplaceholder.typicode.com/guide.html)
@@ -68,7 +92,7 @@ async function genRandomPosts({ postCount = 10 } = {}) {
     for (let i = 1; i <= postCount; i++) {
         // Use async/wait call to process API response. Ref. https://www.npmjs.com/package/axios
         const randomPostNumber = Math.floor(Math.random() * 99) + 1;
-        //const apiResponse =
+ 
         const apiResponse = await axios.get("https://jsonplaceholder.typicode.com/posts/" + randomPostNumber.toString());
         returnArray.push(apiResponse.data.body);
     }
@@ -97,4 +121,4 @@ function genRandomDate({ returnEpoch = false, start = "2020-01-01 00:00:00", end
     return (returnEpoch ? newDate.valueOf : newDate);
 }
 
-export { populateStore, genRandomDate };
+export { populateStore, genRandomDate, genRandomPosts, genUserPosts };

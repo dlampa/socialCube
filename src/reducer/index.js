@@ -25,6 +25,8 @@ Data structure ref. document "Site React component breakdown.pdf"
 
 */
 
+
+
 const userDataReducer = (state = [], action) => {
     switch (action.type) {
         case "ADD_USERDATA_TO_STORE":
@@ -32,7 +34,7 @@ const userDataReducer = (state = [], action) => {
             const storeSnapshot = Array.from(state);
             // Add new object to the array (validation happens outside reducer func.)
             for (let payloadItem of action.payload) {
-                storeSnapshot.push(...action.payload);
+                storeSnapshot.push(payloadItem);
             }
             return storeSnapshot;
 
