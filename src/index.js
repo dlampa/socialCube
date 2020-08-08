@@ -17,7 +17,6 @@ import { populateStore } from './js';
 
 /* App components*/
 import App from './App';
-import TestComponent from './TestComponent';
 
 import UserSignup from './UserSignup';
 import UserProfilePage from './UserProfilePage';
@@ -40,9 +39,8 @@ const Root = (store) => (
     <Router>
       <Route path="/" exact component={App} />
       <Switch>
-        <Route path="/test/:userid" component={TestComponent} />
-        <Route path="/test/" component={TestComponent} />
         <Route path="/signup" component={UserSignup} />
+        <Route path="/profile/:userid" component={UserProfilePage} />
         <Route path="/timeline/" component={TimelinePage} />
         <Route path="/search/:searchTerm" component={SearchPage} />
       </Switch>

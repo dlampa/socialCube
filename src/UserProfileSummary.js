@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import profilePicture from './img/profilepic5.jpg';
+
 import './css/App.css';
 
 
@@ -31,7 +31,7 @@ class UserProfileSummary extends React.Component
                 <p> 
                     <span><a href={"mailto:" + this.props.userInfo.userEmail}>{this.props.userInfo.userEmail}</a></span>
                     <span>{this.props.userInfo.userBirthday.toLocaleDateString()}</span>
-                    <span>{this.props.userInfo.userProfilePicture}</span>
+                    <img src={require("./img/" + this.props.userInfo.userProfilePicture)} alt="Profile Picture" />
                     <span>{this.props.userInfo.userBriefSummary}</span>
                 </p>
             </section>

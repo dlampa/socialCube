@@ -2,7 +2,6 @@
  * Shared Javascript functions, objects and other auxillary components that do not return JSX
  */
 
-import { addToStore, initStore }  from '../actions';
 import axios from 'axios';
 
 

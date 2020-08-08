@@ -49,7 +49,7 @@ class UserSignup extends React.Component
         let noError = true;
 
         // Regex expressions, ref. Milestone 1 and https://stackoverflow.com/a/42203701/12802214
-        const regexIllegalChars = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
+        const regexIllegalChars = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g;
         //const regexValidEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         const regexValidEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
@@ -148,8 +148,7 @@ class UserSignup extends React.Component
             /*  Redirect user from the signup page to their TimelinePage
                 Ref: https://reactgo.com/react-router-redirection/ */
         
-            //TODO : CHANGE
-            this.props.history.push("/test/" + newUsername);
+            this.props.history.push("/timeline");
 
         };
 
@@ -178,7 +177,7 @@ class UserSignup extends React.Component
                 
                 {/* Username */}
                 <label htmlFor="signUpFormUsername">Login:</label>
-                <input type="text" name="signUpFormUsername" id="signUpFormUsername" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
+                <input type="text" name="signUpFormUsername" id="signUpFormUsername" autoComplete="username" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
                 <span hidden={this.state.errorSignUpFormUsername === -1 }>{this.state.errMsgUsername[this.state.errorSignUpFormUsername]}</span>
 
                 {/* Full Names */}
@@ -187,15 +186,15 @@ class UserSignup extends React.Component
                 <span hidden={this.state.errorSignUpFormFullName === -1 }>{this.state.errMsgFullName[this.state.errorSignUpFormFullName]}</span>
 
                 {/* email address */}
-                <label htmlFor="signUpFormEmail">Valid email address:</label>
+                <label htmlFor="signUpFormEmail">email address:</label>
                 <input type="email" name="signUpFormEmail" id="signUpFormEmail" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
                 <span hidden={this.state.errorSignUpFormEmail === -1 }>{this.state.errMsgEmail[this.state.errorSignUpFormEmail]}</span>
 
                 {/* Password entry field, password confirmation field */}
                 <label htmlFor="signUpFormPassword1">Choose a password:</label>
-                <input type="password" name="signUpFormPassword1" id="signUpFormPassword1" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
+                <input type="password" name="signUpFormPassword1" id="signUpFormPassword1" autoComplete="new-password" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
                 <label htmlFor="signUpFormPassword2">Confirm password:</label>
-                <input type="password" name="signUpFormPassword2" id="signUpFormPassword2" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
+                <input type="password" name="signUpFormPassword2" id="signUpFormPassword2" autoComplete="new-password" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
                 <span hidden={this.state.errorSignUpFormPassword2 === -1 }>{this.state.errMsgPassword2[this.state.errorSignUpFormPassword2]}</span>
 
                 {/* User profile pictures TODO selector
@@ -207,12 +206,8 @@ class UserSignup extends React.Component
                 <span hidden={this.state.errorSignUpFormBirthday === -1}>{this.state.errMsgBirthday[this.state.errorSignUpFormBirthday]}</span>
 
                 {/* One Line Summary */}
-                <label htmlFor="signUpFormOneLineSum">Your one line summary:</label>
+                <label htmlFor="signUpFormOneLineSum">Tell us something about yourself:</label>
                 <input type="text" name="signUpFormOneLineSum" id="signUpFormOneLineSum" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
-
-                {/* Interests */}
-                <label htmlFor="signUpFormInterests">Tell us something about your interests:</label>
-                <input type="text" name="signUpFormInterests" id="signUpFormInterests" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
                
                 {/* Sign Up button */}
                 <button>Sign up</button>

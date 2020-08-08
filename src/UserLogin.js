@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { loginUser, logOffUser } from './actions';
 
 class UserLogin2 extends React.Component {
@@ -59,11 +59,30 @@ class UserLogin2 extends React.Component {
         this.props.history.push("/");
     };
 
+    showUserProfile = (event) => {
+        // this.props.history.push("/profile/" + this.props.currentUser);
+        // return <Redirect to={"/profile/" + this.props.currentUser} />
+    }
+
     render() { 
         // If user is logged in, display a log off button
         if (this.props.currentUser) {
+            const currentUser = this.props.currentUser;
+            const userProfilePic = this.props.userProfilePic.map(
+                (userProfilePicObj) => {
+                    if (Object.keys(userProfilePicObj).toString() === currentUser) {
+                        const { [currentUser]: userProfilePicPath } = userProfilePicObj;
+                        return userProfilePicPath;
+                    } else {
+                        return null;
+                    }
+                }).filter(userProfilePicObj => userProfilePicObj !== null);
+        
             return (
                 <form onSubmit={(event) => this.userLogoff(event)} method="post" id="logOffForm">
+                    <Link to={"/profile/" + this.props.currentUser}>
+                        <img src={require("./img/" + userProfilePic)} alt="User profile" />
+                    </Link>
                     <button>Log off</button>
                 </form>
             );
@@ -105,9 +124,16 @@ export default withRouter(connect(
             return { [userIter]: userPass };
         });
 
+        const userProfilePic = state.map(userObject => {
+            const userIter = Object.keys(userObject).toString();
+            const { [userIter]: { profile: { profilePicture: retUserProfilePic } } } = userObject;
+            return { [userIter]: retUserProfilePic };
+        })
+
         return {
             userData: state,
             currentUser: loggedInUser,
+            userProfilePic: userProfilePic,
             authInfo: userAuthInfo
         }
     }
