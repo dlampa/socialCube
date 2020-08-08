@@ -46,7 +46,7 @@ export default connect(
             from the Redux store */
 
         const user = ownProps.userName;
-
+        
         const [userData] = state.map(userObject => {
             // Get the name of the current object's key, corresponding to username in the Redux store.
             const userIter = Object.keys(userObject).toString();

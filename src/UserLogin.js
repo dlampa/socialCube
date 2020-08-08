@@ -46,7 +46,7 @@ class UserLogin2 extends React.Component {
             // If true: 1. mark the user as logged in by using a loginUser action from the redux store
             this.props.dispatch(loginUser(this.state.loginUsername));
             // 2. Redirect the user to his TimelinePage component
-            this.props.history.push("/test/" + this.state.loginUsername);
+            this.props.history.push("/timeline/");
         } else {
             // If false: display error message 
             this.setState({ errorLogin: 1 });
