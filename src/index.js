@@ -18,7 +18,9 @@ import { populateStore } from './js';
 /* App components*/
 import App from './App';
 import TestComponent from './TestComponent';
+
 import UserSignup from './UserSignup';
+import UserProfilePage from './UserProfilePage';
 import TimelinePage from './TimelinePage';
 import SearchPage from './SearchPage';
 

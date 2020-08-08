@@ -57,7 +57,6 @@ class App extends React.Component {
         </section>
         
       </main>
-
     );
   }
 
