@@ -20,6 +20,7 @@ import App from './App';
 import TestComponent from './TestComponent';
 import UserSignup from './UserSignup';
 import TimelinePage from './TimelinePage';
+import SearchPage from './SearchPage';
 
 /* Redux global store, the async route is required because we're using an API to fetch the data that prepopulates the store.
    Ref: https://stackoverflow.com/questions/37393176/redux-loading-initial-state-asynchronously */
@@ -41,6 +42,7 @@ const Root = (store) => (
         <Route path="/test/" component={TestComponent} />
         <Route path="/signup" component={UserSignup} />
         <Route path="/timeline/" component={TimelinePage} />
+        <Route path="/search/:searchTerm" component={SearchPage} />
       </Switch>
     </Router>
   </Provider>

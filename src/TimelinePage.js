@@ -73,7 +73,7 @@ class TimelinePage extends React.Component {
 
 export default connect(
     (state) => {
-
+        // Extract all usernames into an array
         const allUsers = state.map(userObject => Object.keys(userObject).toString());
 
         const [loggedInUser] = state.map(userObject => {

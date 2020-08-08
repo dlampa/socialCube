@@ -1,6 +1,6 @@
 import React from 'react';
 import UserLogin from './UserLogin';
-//import Search from './Search';
+import Search from './Search';
 
 class SiteNav extends React.Component {
     render() {
@@ -8,7 +8,7 @@ class SiteNav extends React.Component {
             <header>
                 <img src={require ("./img/nav_logo-blue.png")} alt="Site logo" />
                 <UserLogin />
-                {/* <Search /> */}
+                <Search />
             </header>
         );
     }
