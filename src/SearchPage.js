@@ -2,6 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import SiteNav from './SiteNav';
+import UserPosts from './UserPosts';
+
+
 import './css/SearchPage.css'
 
 class SearchPage extends React.Component {
@@ -14,8 +18,28 @@ class SearchPage extends React.Component {
 
     render()     
     {
-        const searchResult = this.props.allUsers.filter(userName => null);
-        return null;
+        const searchResult = this.props.allUsers.filter(userName => {
+            // Escape the search term to prevent search method not being able to convert the expression to valid regex
+            const searchRetVal = userName.search(escape(this.props.match.params.searchTerm)); 
+            return searchRetVal !== -1;
+        });
+
+        const searchResultArray = [];
+        for (let searchResultItem of searchResult) {
+            searchResultArray.push(<UserPosts key={searchResult.indexOf(searchResultItem)} userName={searchResultItem} postCount="1" />)
+        }
+
+        return (
+            <>
+                <SiteNav />
+                <section className="searchResultHeading">
+                    <h2>Found {searchResultArray.length} results for "{this.props.match.params.searchTerm}"</h2>
+                </section>
+                <section className="searchResults">
+                    {[...searchResultArray]}
+                </section>
+            </>
+        )
     }
 };
 
