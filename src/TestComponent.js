@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
+import UserPosts from './UserPosts';
 
 class TestComponent extends React.Component {
     constructor(props) {
@@ -12,7 +14,7 @@ class TestComponent extends React.Component {
 
     doesUserExist = (user) => {
         const userList = this.props.userData.map(userObject => Object.keys(userObject).toString());
-        return userList.indexOf(user) > -1 ? true : false;
+        return userList.indexOf(user) > -1;
     };
 
     /* This function iterates through the Redux store and: 
@@ -50,48 +52,102 @@ class TestComponent extends React.Component {
 
         }
     }
-
+    
     render() {
-        
+        //const userInfo = this.getUserProfile(this.props.loggedInUser); // use this.props.profileUser (as a prop passed down from parent component)
         return (
             <>
-                <h1>{this.props.currentUser != null ? this.props.currentUser + "is currently logged in" : "noone is logged in"}</h1>
-                <h1>{this.doesUserExist("damir") ? "Damir Exists" : "Something's wrong"}</h1>
-                <h1>{this.isPasswordValid2("damir", "abc123") ? "Password is correct" : "Password is incorrect"}</h1>
+                <h1>{this.props.currentUser === this.state.userId ? "We have a user match" : "No user match"}</h1>
+                <h1>{this.props.currentUser} | {this.props.currentUser != null ? this.props.currentUser + " is currently logged in" : "noone is logged in"}</h1>
+
+                   
+                
+                <section>
+                    <ul>
+                        {this.props.userPosts.damir.map(userPostData => {
+                            //return (<TestComponent2 userInfo={this.props.userInfo} userPost={userPostData} />);
+                        })}
+                        {/* {this.genUserPosts("damir")} */}
+                    </ul>
+                </section>
+
+
+                <section>
+                    <UserPosts userName="damir" postCount="3" />
+                </section>
+
+                {/* TimeLine page demo follows 
+                    This page should show all the posts from a random selection of the users, except user's own posts.
+                */}
+
+                <section>
+                    { /* Randomize selection of posts, based on length of the array of all usernames 
+                    const randPosterCount = Math.floor(Math.random() * (this.props.users.length - 1) + 1 ); */
+
+
+                 }
+                </section>
+
             </>
         );
 
     }
 }
-
-export default connect(
-    state => {
+export default withRouter(connect(
+    (state, ownProps) => {
         /*  Extract the name of the currently logged in user from the store. Uses object deconstructor 
             to get the value of isLoggedIn stored into the var loginStatus. 
+            Ref: https://stackoverflow.com/questions/28607451/removing-undefined-values-from-array
          */
-        const [loggedInUser] =
-            state.map(userObject => {
-                const userIter = Object.keys(userObject).toString();
-                const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
-                if (loginStatus) { return userIter };
-            });
+        const [loggedInUser] = state.map(userObject => {
+            const userIter = Object.keys(userObject).toString();
+            const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
+            if (loginStatus) { return userIter } else { return null };
+        }).filter(userObject => (userObject !== null ));
         
+
         const userAuthInfo = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { auth: { password: userPass } } } = userObject;
             return { [userIter]: userPass };
         });
-        
-        const userPosts = state.map(userObject => {
+
+        const [userPosts] = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
-            const { [userIter]: { posts: userPosts } } = userObject;
+            const { [userIter]: { posts: userPostItems } } = userObject;
+            return { [userIter]: userPostItems };
         });
         
+        const userProfiles = state.map(userObject => {
+            const userIter = Object.keys(userObject).toString();
+            const { [userIter]: { profile: userProfileItems } } = userObject;
+            return { [userIter]: userProfileItems };
+        });
+
+        let userInfo;
+        if (ownProps.match.params.userid !== undefined) {
+            const user = ownProps.match.params.userid;
+            // Extract user profile information
+            const [{ [user]: userProfileItems }] = userProfiles.filter(userObject => Object.keys(userObject).toString() === user.toString());
+            // Save user profile information into the 
+            userInfo = ({
+                username: user,
+                userFullName: userProfileItems.fullName,
+                userEmail: userProfileItems.emailAddress,
+                userBirthday: userProfileItems.birthday,
+                userProfilePicture: userProfileItems.profilePicture,
+                userBriefSummary: userProfileItems.briefSummary
+            });
+        }
+
         return {
             userData: state,
             users: state.map(userObject => Object.keys(userObject).toString()),
             currentUser: loggedInUser,
-            userAuthInfo: userAuthInfo
+            userAuthInfo: userAuthInfo,
+            userPosts: userPosts,
+            userProfiles: userProfiles,
+            userInfo: userInfo
         }
     }
-)(TestComponent);
+)(TestComponent));
