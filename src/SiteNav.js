@@ -1,6 +1,6 @@
 import React from 'react';
 import UserLogin2 from './UserLogin2';
-import Search from './Search';
+//import Search from './Search';
 
 import './css/App.css';
 
@@ -17,7 +17,7 @@ class SiteNav extends React.Component {
                         <UserLogin2 />
                     </li>
                     <li>
-                        <Search />
+                     <Search />
                     </li>
                 </ul>
 
