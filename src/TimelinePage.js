@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// import SiteNav from './SiteNav';
+import SiteNav from './SiteNav';
 // import UserProfileSummary from './UserProfileSummary';
 import UserPosts from './UserPosts';
 
@@ -55,9 +55,7 @@ class TimelinePage extends React.Component {
             // Show the results
             return (
                 <>
-                    <header>
-                        {/* <SiteNav /> */}
-                    </header>
+                    <SiteNav />
 
                     <section>
                         {/* <UserProfileSummary /> */}
