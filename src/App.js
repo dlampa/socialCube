@@ -3,7 +3,7 @@ import React from 'react';
 import UserLogin from './UserLogin';
 import UserSignup from './UserSignup';
 
-import Logo from './img/PlaceholderLogo.png'
+import Logo from './img/logo2.png'
 import './css/App.css';
 
 class App extends React.Component {
@@ -23,12 +23,12 @@ class App extends React.Component {
       <main>
 
         {/* Logo is always shown on page */}
-        <section>
+        <section id="siteLogo">
           <img src={Logo} alt="Site Logo" />
-          <h1>Social network</h1>
+          <h1 className="sr-only">Social Cube</h1>
         </section>
     
-        <section>
+        <section id="loginControls">
           
           {/* Startup scenario - display two buttons, giving a choice to Login or to Sign up */}
           {(!(this.state.showLogin || this.state.showSignup)) ?

@@ -7,8 +7,8 @@ class SiteNav extends React.Component {
         return (
             <header>
                 <img src={require ("./img/nav_logo-blue.png")} alt="Site logo" />
-                <UserLogin />
                 <Search />
+                <UserLogin />
             </header>
         );
     }

@@ -36,7 +36,7 @@ class Search extends React.Component {
     render()
     {
         return (
-            <form onSubmit={(event) => this.submitSearch(event)} method="post">
+            <form id="searchForm" onSubmit={(event) => this.submitSearch(event)} method="post">
                 <label htmlFor="searchTermInput" className="sr-only">Search:</label>
                 <input type="search" name="searchTermInput" id="searchTermInput" placeholder="Search for users..." value={this.state.searchTerm} onChange={(event) => this.updateSearchState(event)} />
             </form>

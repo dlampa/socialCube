@@ -32,10 +32,10 @@ class SearchPage extends React.Component {
         return (
             <>
                 <SiteNav />
-                <section className="searchResultHeading">
+                <section id="searchResultHeading">
                     <h2>Found {searchResultArray.length} results for "{this.props.match.params.searchTerm}"</h2>
                 </section>
-                <section className="searchResults">
+                <section id="searchResults">
                     {[...searchResultArray]}
                 </section>
             </>

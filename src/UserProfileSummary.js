@@ -26,14 +26,17 @@ class UserProfileSummary extends React.Component
     render()
     {
         return (
-            <section>
-                <h1>{this.props.userInfo.userFullName}</h1>
-                <p> 
-                    <span><a href={"mailto:" + this.props.userInfo.userEmail}>{this.props.userInfo.userEmail}</a></span>
-                    <span>{this.props.userInfo.userBirthday.toLocaleDateString()}</span>
+            <section id="userProfile">
                     <img src={require("./img/" + this.props.userInfo.userProfilePicture)} alt="Profile Picture" />
-                    <span>{this.props.userInfo.userBriefSummary}</span>
-                </p>
+                <div> 
+                    <h1>{this.props.userInfo.userFullName}</h1>
+                    <h2>{this.props.userProfile}</h2>
+                    <div id="briefSummary">{this.props.userInfo.userBriefSummary}</div>
+                    <div id="contactInfo">
+                        <a href={"mailto:" + this.props.userInfo.userEmail}>{this.props.userInfo.userEmail}</a>
+                        <time>{this.props.userInfo.userBirthday.toLocaleDateString()}</time>                    
+                    </div>
+                </div>
             </section>
         ); 
     }

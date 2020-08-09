@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import SiteNav from './SiteNav';
-// import UserProfileSummary from './UserProfileSummary';
 import UserPosts from './UserPosts';
 
 import "./css/TimelinePage.css";
@@ -50,16 +49,15 @@ class TimelinePage extends React.Component {
             for (let randomUser of randomUsers) {
                 const randomPostCount = this.genRndNum(5);
                 arrUserPosts.push(<UserPosts key={randomUsers.indexOf(randomUser)} userName={randomUser} postCount={randomPostCount} />);
+                if (randomUsers.indexOf(randomUser) !== (randomUsers.length - 1)) {
+                    arrUserPosts.push(<div className="postDivider"></div>);
+                }
             }
 
             // Show the results
             return (
                 <>
                     <SiteNav />
-
-                    <section>
-                        {/* <UserProfileSummary /> */}
-                    </section>
 
                     <section id="userTimeline">
                         {[...arrUserPosts]}

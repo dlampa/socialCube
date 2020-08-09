@@ -26,9 +26,9 @@ class UserProfilePage extends React.Component {
             return (
                 <>
                     <SiteNav />
-                    <article>
+                    <article id="userProfilePage">
                         <UserProfileSummary userProfile={this.state.pageUserId} />
-                        <section>
+                        <section id="userTimeline">
                             <UserPosts userName={this.state.pageUserId} postCount="5" />
                         </section>
                     </article>

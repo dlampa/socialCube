@@ -178,24 +178,24 @@ class UserSignup extends React.Component
                 {/* Username */}
                 <label htmlFor="signUpFormUsername">Login:</label>
                 <input type="text" name="signUpFormUsername" id="signUpFormUsername" autoComplete="username" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
-                <span hidden={this.state.errorSignUpFormUsername === -1 }>{this.state.errMsgUsername[this.state.errorSignUpFormUsername]}</span>
+                <span className="errMsg" hidden={this.state.errorSignUpFormUsername === -1 }>{this.state.errMsgUsername[this.state.errorSignUpFormUsername]}</span>
 
                 {/* Full Names */}
                 <label htmlFor="signUpFormFullName">Full name:</label>
                 <input type="text" name="signUpFormFullName" id="signUpFormFullName" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
-                <span hidden={this.state.errorSignUpFormFullName === -1 }>{this.state.errMsgFullName[this.state.errorSignUpFormFullName]}</span>
+                <span className="errMsg" hidden={this.state.errorSignUpFormFullName === -1 }>{this.state.errMsgFullName[this.state.errorSignUpFormFullName]}</span>
 
                 {/* email address */}
                 <label htmlFor="signUpFormEmail">email address:</label>
                 <input type="email" name="signUpFormEmail" id="signUpFormEmail" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
-                <span hidden={this.state.errorSignUpFormEmail === -1 }>{this.state.errMsgEmail[this.state.errorSignUpFormEmail]}</span>
+                <span className="errMsg" hidden={this.state.errorSignUpFormEmail === -1 }>{this.state.errMsgEmail[this.state.errorSignUpFormEmail]}</span>
 
                 {/* Password entry field, password confirmation field */}
                 <label htmlFor="signUpFormPassword1">Choose a password:</label>
                 <input type="password" name="signUpFormPassword1" id="signUpFormPassword1" autoComplete="new-password" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
                 <label htmlFor="signUpFormPassword2">Confirm password:</label>
                 <input type="password" name="signUpFormPassword2" id="signUpFormPassword2" autoComplete="new-password" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
-                <span hidden={this.state.errorSignUpFormPassword2 === -1 }>{this.state.errMsgPassword2[this.state.errorSignUpFormPassword2]}</span>
+                <span className="errMsg" hidden={this.state.errorSignUpFormPassword2 === -1 }>{this.state.errMsgPassword2[this.state.errorSignUpFormPassword2]}</span>
 
                 {/* User profile pictures TODO selector
                 <img src={ProfileImage1} alt="Avatar 1" /> */}
@@ -203,7 +203,7 @@ class UserSignup extends React.Component
                 {/* Birthday */}
                 <label htmlFor="signUpFormBirthday">Birthday:</label>
                 <input type="date" name="signUpFormBirthday" id="signUpFormBirthday" onChange={(event) => this.updateStateFromEvent(event)} /*required*/ />
-                <span hidden={this.state.errorSignUpFormBirthday === -1}>{this.state.errMsgBirthday[this.state.errorSignUpFormBirthday]}</span>
+                <span className="errMsg" hidden={this.state.errorSignUpFormBirthday === -1}>{this.state.errMsgBirthday[this.state.errorSignUpFormBirthday]}</span>
 
                 {/* One Line Summary */}
                 <label htmlFor="signUpFormOneLineSum">Tell us something about yourself:</label>

@@ -1,0 +1,410 @@
+/* Global fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Roboto:wght@100;300;500;700;900&display=swap');
+
+
+/* Login page */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(2, 0, 87);
+}
+
+main, #root {
+    height: 100%;
+     background-color: #e7e7e8;
+}
+
+main {
+    display: flex;
+    flex-flow: column wrap;
+    justify-items: center;
+    align-items: stretch;
+    align-content: center;
+}
+
+div:empty {
+    background-color: black;
+    color: white;
+    font-size: x-large;
+}
+
+#siteLogo {
+    display: flex;
+    flex-flow: column wrap;
+    justify-items: center;
+    align-items: center;
+    /* Site background, with modifications ref: https://unsplash.com/photos/YrMjQFkXYIs */
+    background-image: url("../img/site-background2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 20%;
+    background-blend-mode: lighten;
+    background-color: rgba(255,255,255,0.5);
+}
+
+#siteLogo img {
+    width: 100%;
+}
+
+#loginControls {
+    background-color: rgb(2, 0, 87);
+    height: 290px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center; 
+    align-items: center;
+    align-content: center;
+
+}
+
+#loginControls button {
+    border: none;
+    color: #e7e7e8;
+    background-color: #00b9b5;
+    padding: 10px;
+    margin: 15px 0;
+    width: 100px;
+    border-radius: 8px;
+}
+
+#loginControls button:nth-child(2) {
+    background-color: #db8000;
+}
+
+/* UserLogin */
+
+#loginControls form { 
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin: 5px 0 0 0;
+}
+
+#loginControls form label {
+    color: #e7e7e8;
+    align-self: flex-start;
+    margin: 10px 0;
+}
+
+#loginControls form button {
+    width: 100px;
+    margin: 25px 0 0 0;
+}
+
+#loginControls form input {
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+#loginControls .errMsg {
+    color: #b6b300;
+    margin: 5px 0;
+
+}
+
+#logOffForm {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+#logOffForm img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+#logOffForm button {
+    border: 1px solid #e7e7e8;
+    background-color: transparent;
+    color:  #e7e7e8;
+}
+
+/* SiteNav */
+
+header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    background-color: rgb(2, 0, 87);
+    padding: 15px 0;
+}
+
+header img {
+    height: 40px;
+    width: 40px;
+}
+
+/* TimelinePage */
+
+#userTimeline {
+    background-color: #e7e7e8;
+}
+
+#userTimeline li div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+#userTimeline li div div {
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    margin: 0 0 0 15px;
+}
+
+#userTimeline li div div a {
+    margin: 2px;
+}
+
+#userTimeline .postDivider {
+    border-bottom: 2px solid #db8000;
+    margin: 0 25px;
+}
+
+#userTimeline ul:first-of-type {
+    margin: 0 0 35px 0;
+    padding: 15px 0 0 0;
+}
+
+#userTimeline ul {
+    margin: 35px 0;
+
+}
+
+#userTimeline ul:last-of-type {
+    margin: 35px 0 0 0;
+    padding: 0 0 15px 0;
+}
+#userTimeline li {
+    margin: 10px 0;
+    padding: 0 15px;
+}
+
+#userTimeline li:not(:first-of-type) {
+    margin: 20px 0;
+}
+
+#userTimeline li a { 
+    text-decoration: none;
+    color: rgb(2, 0, 87);
+}
+
+#userTimeline li img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    border: 2px solid rgb(255,255,255);
+    padding: 2px;
+    
+}
+
+.postFullName {
+    font-weight: 700;
+    font-size: large;
+}
+
+.postUsername:before {
+    content: '@';
+}
+
+.postUsername {
+    font-weight: 400;
+    display: block;
+}
+
+.postTimestamp {
+    display: block;
+    font-size: smaller;
+    text-align: right;
+}
+
+.postText {
+    display: block;
+    margin: 10px 0;
+    background-color: white;
+    border-radius: 6px;
+    padding: 5px;
+    line-height: 1.4;
+}
+
+/* UserProfilePage */
+
+#userProfilePage {
+    background-color: #e7e7e8;
+}
+
+#userProfile {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background-color: #0062bb;
+    padding: 15px 0;
+    color:  #e7e7e8;
+
+}
+
+#userProfile img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 6px solid #e7e7e8;
+    padding: 20px;
+}
+
+#userProfile > div {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#userProfile h1 {
+    font-size: xx-large;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    color: #ffffff;
+    margin: 15px 0;
+}
+
+#userProfile h2:before {
+    content: '@';
+}
+
+#userProfile h2 {
+    font-size: x-large;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    color: #00b9b5;
+}
+
+#briefSummary {
+    line-height: 1.5;
+    letter-spacing: 0.7px;
+    padding: 10px 25px;
+}
+
+#briefSummary:before {
+    content: '\201C\ ';
+}
+
+#briefSummary:after {
+    content: ' \201D';
+}
+
+#contactInfo {
+    align-self: center;
+}
+
+#contactInfo a:before {
+    content: '📧';
+    padding: 0 10px 0 0;
+}
+
+#contactInfo a {
+    color:  #e7e7e8;
+    text-decoration: none;
+}
+
+#userProfile div a:after {
+    content: ' | ';
+    font-size: x-large;
+    color: #e7e7e8;
+}
+#userProfile time:before {
+    content: '🧁';
+    padding: 0 10px 0 0;
+}
+
+/* Search */
+
+#searchForm {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+#searchForm input {
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+#searchTermInput {
+    width: 100%;
+}
+
+/* SearchPage */
+
+#searchResultHeading {
+    padding: 25px 10px 0 10px;
+    text-align: center;
+}
+
+#searchResults {
+    padding: 25px 0;
+}
+
+#searchResults a {
+    text-decoration: none;
+    font-size: smaller;
+    color: black;
+}
+
+#searchResults ul {
+    /* margin: 0 0 10px 0; */
+    padding: 10px 10px 10px 10px;
+ 
+}
+
+#searchResults div {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+#searchResults div:first-child {
+    padding: 10px 10px;
+    margin: 0 10px 0 0;
+    background-color: white;
+    border-radius: 8px;
+}
+
+#searchResults div:nth-child(2) {
+    padding: 10px 0;
+}
+
+#searchResults img {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #020057; 
+    padding: 4px;
+}
+
+#searchResults li {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#searchResults .postFullName {
+    text-align:center;
+
+}
+
+#searchResults .postText {
+    margin: unset;
+    background-color: white;
+    border-radius: 8px;
+}
+
+#searchResults time {
+    display: none;
+}
+
+/* General */
+
+.sr-only {
+    display: none;
+}
