@@ -12,7 +12,8 @@ class UserLogin2 extends React.Component {
             loginPassword: "",
             errorLogin: -1,
 
-            errMsgLogin: ["User does not exist", "Password incorrect.", "Login/Password fields must be filled in."]
+            errMsgLogin: ["User does not exist", "Password incorrect.", "Login/Password fields must be filled in."],
+            showMenu: false
         };
     }
 
@@ -64,6 +65,10 @@ class UserLogin2 extends React.Component {
         // return <Redirect to={"/profile/" + this.props.currentUser} />
     }
 
+    showProfileMenu = () => {
+        this.setState({ showMenu: !this.state.showMenu });
+    }
+
     render() { 
         // If user is logged in, display a log off button
         if (this.props.currentUser) {
@@ -79,12 +84,16 @@ class UserLogin2 extends React.Component {
                 }).filter(userProfilePicObj => userProfilePicObj !== null);
         
             return (
-                <form onSubmit={(event) => this.userLogoff(event)} method="post" id="logOffForm">
-                    <Link to={"/profile/" + this.props.currentUser}>
-                        <img src={require("./img/" + userProfilePic)} alt="User profile" />
-                    </Link>
-                    <button>Log off</button>
-                </form>
+                <div id="profileMenu">
+                    <img src={require("./img/" + userProfilePic)} alt="User profile" onClick={this.showProfileMenu} />
+                    {this.state.showMenu ? (
+                        <ul>
+                            <li><Link to={"/profile/" + this.props.currentUser} onClick={this.showProfileMenu}>My profile</Link></li>
+                            <li><Link to={"/timeline/"}>My timeline</Link></li>
+                            <li className="profileMenuDivider"></li>
+                            <li><Link to="#" onClick={(event) => this.userLogoff(event)}>Log off</Link></li>
+                        </ul>) : null}
+                </div>
             );
         }
 

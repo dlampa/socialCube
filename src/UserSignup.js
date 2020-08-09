@@ -50,7 +50,6 @@ class UserSignup extends React.Component
 
         // Regex expressions, ref. Milestone 1 and https://stackoverflow.com/a/42203701/12802214
         const regexIllegalChars = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g;
-        //const regexValidEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         const regexValidEmail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
         /*  This could have been left to the browser to handle, but it is not possible to predict
@@ -232,7 +231,6 @@ export default withRouter(connect(
         const usersList = state.map(userObject => Object.keys(userObject).toString());
 
         return {
-            userData: state,
             users: usersList,
             currentUser: loggedInUser
         }

@@ -19,6 +19,17 @@ class UserProfilePage extends React.Component {
         };
         
     }
+
+    /*  Necessary to correct a very specific behavior which occurs when a user profile page
+        is displayed, and the user opts to see their own profile from the navbar menu. 
+        This forces an update to state after an update to props has been made.
+        ref: https://stackoverflow.com/a/52539260/12802214 */
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.match.params.userid !== prevProps.match.params.userid) {
+            this.setState({ pageUserId: this.props.currentUser });
+        }
+    }
+
     render() {
         // Check if there is an actively logged in user 
         if (this.props.currentUser !== undefined) {

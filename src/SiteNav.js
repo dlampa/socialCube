@@ -2,6 +2,8 @@ import React from 'react';
 import UserLogin from './UserLogin';
 import Search from './Search';
 
+import './css/SiteNav.css';
+
 class SiteNav extends React.Component {
     render() {
         return (

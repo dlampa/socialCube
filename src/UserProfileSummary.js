@@ -27,7 +27,7 @@ class UserProfileSummary extends React.Component
     {
         return (
             <section id="userProfile">
-                    <img src={require("./img/" + this.props.userInfo.userProfilePicture)} alt="Profile Picture" />
+                    <img src={require("./img/" + this.props.userInfo.userProfilePicture)} alt="Profile" />
                 <div> 
                     <h1>{this.props.userInfo.userFullName}</h1>
                     <h2>{this.props.userProfile}</h2>

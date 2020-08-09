@@ -50,7 +50,7 @@ class TimelinePage extends React.Component {
                 const randomPostCount = this.genRndNum(5);
                 arrUserPosts.push(<UserPosts key={randomUsers.indexOf(randomUser)} userName={randomUser} postCount={randomPostCount} />);
                 if (randomUsers.indexOf(randomUser) !== (randomUsers.length - 1)) {
-                    arrUserPosts.push(<div className="postDivider"></div>);
+                    arrUserPosts.push(<div key={Math.random()} className="postDivider"></div>);
                 }
             }
 

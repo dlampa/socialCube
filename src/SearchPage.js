@@ -16,30 +16,35 @@ class SearchPage extends React.Component {
         }
     }
 
-    render()     
+    render()
     {
-        const searchResult = this.props.allUsers.filter(userName => {
-            // Escape the search term to prevent search method not being able to convert the expression to valid regex
-            const searchRetVal = userName.search(escape(this.props.match.params.searchTerm)); 
-            return searchRetVal !== -1;
-        });
+        if (this.props.loggedInUser === undefined) {
+            this.props.history.push("/");
+            return null;
+        } else {
+            const searchResult = this.props.allUsers.filter(userName => {
+                // Escape the search term to prevent search method not being able to convert the expression to valid regex
+                const searchRetVal = userName.search(escape(this.props.match.params.searchTerm));
+                return searchRetVal !== -1;
+            });
 
-        const searchResultArray = [];
-        for (let searchResultItem of searchResult) {
-            searchResultArray.push(<UserPosts key={searchResult.indexOf(searchResultItem)} userName={searchResultItem} postCount="1" />)
+            const searchResultArray = [];
+            for (let searchResultItem of searchResult) {
+                searchResultArray.push(<UserPosts key={searchResult.indexOf(searchResultItem)} userName={searchResultItem} postCount="1" />)
+            }
+
+            return (
+                <main id="searchPage">
+                    <SiteNav />
+                    <section id="searchResultHeading">
+                        <h2>Found {searchResultArray.length} results for "{this.props.match.params.searchTerm}"</h2>
+                    </section>
+                    <section id="searchResults">
+                        {[...searchResultArray]}
+                    </section>
+                </main>
+            )
         }
-
-        return (
-            <>
-                <SiteNav />
-                <section id="searchResultHeading">
-                    <h2>Found {searchResultArray.length} results for "{this.props.match.params.searchTerm}"</h2>
-                </section>
-                <section id="searchResults">
-                    {[...searchResultArray]}
-                </section>
-            </>
-        )
     }
 };
 

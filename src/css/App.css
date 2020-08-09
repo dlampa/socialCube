@@ -5,29 +5,42 @@
 
 /* Login page */
 
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: rgb(2, 0, 87);
+html, body {
+    height: 100%;
+    width: 100%;
 }
 
-main, #root {
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #020057;
+}
+
+#root {
+    background-color: #e7e7e8;
     height: 100%;
-     background-color: #e7e7e8;
+    overflow-y: auto;
+}
+
+/* Display loading animation when root is empty */
+#root:empty {
+    background-color: #020057;
+    background-image: url("../img/loading.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
 }
 
 main {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     justify-items: center;
+    justify-content: stretch;
     align-items: stretch;
     align-content: center;
+    height: 100%;
+
 }
 
-div:empty {
-    background-color: black;
-    color: white;
-    font-size: x-large;
-}
 
 #siteLogo {
     display: flex;
@@ -40,19 +53,20 @@ div:empty {
     background-size: cover;
     background-position-y: 20%;
     background-blend-mode: lighten;
-    background-color: rgba(255,255,255,0.5);
+    background-color: #ffffff80;
 }
 
 #siteLogo img {
     width: 100%;
+    margin: auto;
 }
 
 #loginControls {
-    background-color: rgb(2, 0, 87);
-    height: 290px;
+    background-color: #020057;
+    height:100%;
     display: flex;
     flex-flow: column;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     align-content: center;
 
@@ -75,6 +89,7 @@ div:empty {
 /* UserLogin */
 
 #loginControls form { 
+    justify-self: flex-start;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -104,38 +119,65 @@ div:empty {
 
 }
 
-#logOffForm {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
+/* LoginPage menu control */
+
+#profileMenu {
+    align-self: center;
 }
 
-#logOffForm img {
+#profileMenu li {
+    padding: 8px 15px;
+}
+
+#profileMenu .profileMenuDivider {
+    box-sizing: border-box;
+    line-height: 0;
+    height: 1px;
+    padding: 0;
+    border: 1px solid #020057;
+    margin: 11px 0;
+}
+#profileMenu img {
     height: 30px;
     width: 30px;
     border-radius: 50%;
+    padding: 3px;
+    border: 2px solid #e7e7e8;
+    cursor: pointer;
 }
 
-#logOffForm button {
-    border: 1px solid #e7e7e8;
-    background-color: transparent;
-    color:  #e7e7e8;
+#profileMenu ul {
+    background-color: #e7e7e8;
+    position: absolute;
+    padding: 10px 0;
+    min-width: 90px;
+    margin-top: 5px;
+    right: 10px;
+    border: 1px solid #020057;
+    border-radius: 6px;
+}
+
+
+#profileMenu li:hover {
+    background-color: #020057;
+    color: #e7e7e8;
+    transition: all 0.5s ease-in;
+
+}
+
+#profileMenu a {
+    text-decoration: none;
+    color: #020057;
+}
+
+#profileMenu a:hover, #profileMenu li:hover a  {
+    color: #e7e7e8;
+    transition: all 0.5s ease-in;
+
 }
 
 /* SiteNav */
 
-header {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    background-color: rgb(2, 0, 87);
-    padding: 15px 0;
-}
-
-header img {
-    height: 40px;
-    width: 40px;
-}
 
 /* TimelinePage */
 
@@ -189,14 +231,15 @@ header img {
 
 #userTimeline li a { 
     text-decoration: none;
-    color: rgb(2, 0, 87);
+    color: #020057;
 }
 
 #userTimeline li img {
     height: 45px;
     width: 45px;
     border-radius: 50%;
-    border: 2px solid rgb(255,255,255);
+    border: 2px solid #ffffff;
+    border-radius: 6px;
     padding: 2px;
     
 }
@@ -224,7 +267,7 @@ header img {
 .postText {
     display: block;
     margin: 10px 0;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 6px;
     padding: 5px;
     line-height: 1.4;
@@ -320,6 +363,10 @@ header img {
 
 /* Search */
 
+#searchPage {
+    flex-flow: column nowrap;
+}
+
 #searchForm {
     display: flex;
     flex-flow: row nowrap;
@@ -350,7 +397,7 @@ header img {
 #searchResults a {
     text-decoration: none;
     font-size: smaller;
-    color: black;
+    color: #000000;
 }
 
 #searchResults ul {
@@ -368,7 +415,7 @@ header img {
 #searchResults div:first-child {
     padding: 10px 10px;
     margin: 0 10px 0 0;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 8px;
 }
 
@@ -395,7 +442,7 @@ header img {
 
 #searchResults .postText {
     margin: unset;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 8px;
 }
 
@@ -407,4 +454,112 @@ header img {
 
 .sr-only {
     display: none;
+}
+
+
+@Media (min-width: 600px) {
+
+    main {
+        flex-flow: row nowrap;
+        height: 100%;
+    }
+
+    #root {
+        /* background-color: #020057; */
+    }
+
+    #siteLogo {
+        height: 100%;
+        width: 50%;
+    }
+
+    #loginControls {
+        flex: 1 0 auto;
+        overflow-y: auto;
+        justify-content: unset;
+
+    }
+    
+    #searchForm {
+        width: 400px;
+    }
+}
+
+@Media (max-height: 599px) {
+
+    #loginControls {
+        justify-content: unset;
+    }
+
+}
+
+@Media (min-width: 600px) and (min-height: 600px) {
+
+    #root {
+        background-color: #e7e7e8;
+    }
+   
+    #loginControls {
+        flex: 1 0 auto;
+        overflow-y: auto;
+        justify-content: center;
+    }
+
+    #userTimeline {
+        width: 75%;
+        margin: auto;
+    }
+
+    #searchResults div:first-child {
+        width: 95px;
+    }
+
+    .postText {
+        width: 100%;
+    }
+
+    #searchResults {
+        width: 75%;
+        margin: 0 auto;
+    }
+
+    #briefSummary {
+        width: 65%;
+        margin: 0 auto;
+    }
+
+    #searchForm {
+        width: 500px;
+    }
+
+}
+
+@Media (min-width: 1280px) {
+    header {
+        width: 75%;
+        margin: 0 auto;
+    }
+
+    #userProfile {
+        width: Calc(75% + 30px);
+        margin: 0 auto;
+    }
+
+    #userTimeline {
+        width: 55%;
+        margin: auto;
+    }
+    
+    #searchResults {
+        width: 55%;
+        margin: 0 auto;
+    }
+    
+    #briefSummary {
+        width: 55%;
+    }
+
+    #profileMenu ul {
+        right: 13%;
+    }
 }
