@@ -25,8 +25,6 @@ Data structure ref. document "Site React component breakdown.pdf"
 
 */
 
-
-
 const userDataReducer = (state = [], action) => {
     switch (action.type) {
         case "ADD_USERDATA_TO_STORE":
@@ -67,23 +65,7 @@ const userDataReducer = (state = [], action) => {
             });
 
             return returnLogOffArray;
-                        
-            //    if (loginStoreSnapshot[i] === action.payload) { let temp = loginStoreSnapshot[i]; temp[action.payload].auth.isLoggedIn = true };
-            
-            //console.log(loginStoreSnapshot);
-            //state.map(user => { console.log(Object.values(user)) });
-            // Stores value of isLoggedIn from the user object.auth into isLoggedIn var, returns object back
-            //console.log(state.map(user => {
-            //    const { [Object.keys(user)]: { auth: { isLoggedIn } } } = user;
-            //    return { [Object.keys(user)]: isLoggedIn }
-           // }));
-
-            
-            //console.log(isLoggedIn);
-
-           // abc = state.map(user => { return { [user]: [user].auth } });
-            //console.log(abc);
-            //return state;
+        
         default:
             return state;
     }

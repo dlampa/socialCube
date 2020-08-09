@@ -134,7 +134,7 @@ class UserSignup extends React.Component
                         fullName: this.state.signUpFormFullName,
                         emailAddress: this.state.signUpFormEmail,
                         birthday: new Date(this.state.signUpFormBirthday),
-                        profilePicture: "profilepic1.jpg",
+                        profilePicture: "profilepic" + (Math.floor(Math.random() * 9) + 1).toString() + ".jpg",
                         briefSummary: this.state.signUpFormOneLineSum,
                     },
                     posts: this.state.newUserPosts
