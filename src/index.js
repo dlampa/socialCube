@@ -40,12 +40,12 @@ const createStoreAsync = async () => {
 const Root = (store) => (
   <Provider store={store.store}>
     <Router>
-      <Route path="/" exact component={App} />
+      <Route path={process.env.PUBLIC_URL + "/"} exact component={App} />
       <Switch>
-        <Route path="/signup" component={UserSignup} />
-        <Route path="/profile/:userid" component={UserProfilePage} />
-        <Route path="/timeline/" component={TimelinePage} />
-        <Route path="/search/:searchTerm" component={SearchPage} />
+        <Route path={process.env.PUBLIC_URL + "/signup"} component={UserSignup} />
+        <Route path={process.env.PUBLIC_URL + "/profile/:userid"} component={UserProfilePage} />
+        <Route path={process.env.PUBLIC_URL + "/timeline/"} component={TimelinePage} />
+        <Route path={process.env.PUBLIC_URL + "/search/:searchTerm"} component={SearchPage} />
       </Switch>
     </Router>
   </Provider>
