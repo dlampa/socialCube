@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import "./css/TimelinePage.css";
+
 import SiteNav from './SiteNav';
 import UserPosts from './UserPosts';
 
-import "./css/TimelinePage.css";
 
 class TimelinePage extends React.Component {
 
@@ -91,20 +92,3 @@ export default connect(
     }
 )(TimelinePage);
 
-/* Objectives 
-
-1. Get the username of the actively logged in user DONE
-2. If no user is logged in, send the user to the login page
-3. If the user is logged in, retrieve a list of all the users. DONE
-3.5 Remove logged in user from the list of all users. DONE
-4. Select random number of users.
-5. Select random number of posts.
-6. Pass the posts to UserPosts component, one UserPosts component per user.
-
-allUsers = ["damir", "danielle", "muzaffar", "saida", "spurius", "titus", "mamercus", "faustus", "caius", "cassius"];
-
-how many members in the array allUsers? 10
-select a random number between 1 and 10 (or 0 and 9): 3 [0, 5, 7]
-for allUsers[randomIndex]: take username and take the random number generated for the postCount and pass to <UserPosts> component.
-
-*/

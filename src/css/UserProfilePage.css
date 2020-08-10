@@ -1,0 +1,87 @@
+/* UserProfilePage */
+
+#userProfilePage {
+    background-color: #e7e7e8;
+}
+
+#userProfile {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background-color: #0062bb;
+    padding: 15px 0;
+    color:  #e7e7e8;
+
+}
+
+#userProfile img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 6px solid #e7e7e8;
+    padding: 20px;
+}
+
+#userProfile > div {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#userProfile h1 {
+    font-size: xx-large;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    color: #ffffff;
+    margin: 15px 0;
+}
+
+#userProfile h2:before {
+    content: '@';
+}
+
+#userProfile h2 {
+    font-size: x-large;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    color: #00b9b5;
+}
+
+#briefSummary {
+    line-height: 1.5;
+    letter-spacing: 0.7px;
+    padding: 10px 25px;
+}
+
+#briefSummary:before {
+    content: '\201C\ ';
+}
+
+#briefSummary:after {
+    content: ' \201D';
+}
+
+#contactInfo {
+    align-self: center;
+}
+
+#contactInfo a:before {
+    content: '📧';
+    padding: 0 10px 0 0;
+}
+
+#contactInfo a {
+    color:  #e7e7e8;
+    text-decoration: none;
+}
+
+#userProfile div a:after {
+    content: ' | ';
+    font-size: x-large;
+    color: #e7e7e8;
+}
+#userProfile time:before {
+    content: '🧁';
+    padding: 0 10px 0 0;
+}

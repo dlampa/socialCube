@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import UserLogin from './UserLogin';
 import UserSignup from './UserSignup';
 
-import Logo from './img/logo2.png'
+import Logo from './img/logo.png'
 import './css/App.css';
 
 class App extends React.Component {

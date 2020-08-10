@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import './css/SearchPage.css';
+
 import SiteNav from './SiteNav';
 import UserPosts from './UserPosts';
 
-
-import './css/SearchPage.css'
 
 class SearchPage extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class SearchPage extends React.Component {
     render()
     {
         if (this.props.loggedInUser === undefined) {
-            this.props.history.push("/");
+            this.props.history.push(process.env.PUBLIC_URL + "/");
             return null;
         } else {
             const searchResult = this.props.allUsers.filter(userName => {

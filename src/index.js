@@ -1,26 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/reset.css';
 
-/* Redux setup */
+// CSS
+import './css/reset.css';
+import './css/Typography.css';
+
+// Redux setup
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import userDataReducer from './reducer';
 
-/* React-Router setup */
+// React-Router setup
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
-/* Aux support functions */
+// Aux JS support functions
 import { populateStore } from './js';
 
-/* App components*/
+// App components
 import App from './App';
-
 import UserSignup from './UserSignup';
 import UserProfilePage from './UserProfilePage';
 import TimelinePage from './TimelinePage';
 import SearchPage from './SearchPage';
+
+
+
 
 /* Redux global store, the async route is required because we're using an API to fetch the data that prepopulates the store.
    Ref: https://stackoverflow.com/questions/37393176/redux-loading-initial-state-asynchronously */
@@ -28,8 +32,8 @@ import SearchPage from './SearchPage';
 const createStoreAsync = async () => {
   let store = createStore(
     userDataReducer,
-    await populateStore(null),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); // Redux devtools - remove in "production"
+    await populateStore(null));
+    //,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); // Redux devtools
   return await store;
 }
 

@@ -1,0 +1,66 @@
+/* SearchPage */
+
+#searchResultHeading {
+    padding: 25px 10px 0 10px;
+    text-align: center;
+}
+
+#searchResults {
+    padding: 25px 0;
+}
+
+#searchResults a {
+    text-decoration: none;
+    font-size: smaller;
+    color: #000000;
+}
+
+#searchResults ul {
+    /* margin: 0 0 10px 0; */
+    padding: 10px 10px 10px 10px;
+ 
+}
+
+#searchResults div {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+#searchResults div:first-child {
+    padding: 10px 10px;
+    margin: 0 10px 0 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+#searchResults div:nth-child(2) {
+    padding: 10px 0;
+}
+
+#searchResults img {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #020057; 
+    padding: 4px;
+}
+
+#searchResults li {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#searchResults .postFullName {
+    text-align:center;
+
+}
+
+#searchResults .postText {
+    margin: unset;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+#searchResults time {
+    display: none;
+}

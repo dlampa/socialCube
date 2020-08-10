@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addToStore } from './actions';
 import { genUserPosts } from './js';
-import './css/UserSignup.css';
 
+// CSS is shared with UserLogin.js
+import './css/UserLogin.css';
 
 class UserSignup extends React.Component
 {
@@ -147,7 +148,7 @@ class UserSignup extends React.Component
             /*  Redirect user from the signup page to their TimelinePage
                 Ref: https://reactgo.com/react-router-redirection/ */
         
-            this.props.history.push("/timeline");
+            this.props.history.push(process.env.PUBLIC_URL + "/timeline");
 
         };
 

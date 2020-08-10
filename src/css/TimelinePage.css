@@ -1,0 +1,64 @@
+/* TimelinePage */
+
+#userTimeline {
+    background-color: #e7e7e8;
+}
+
+#userTimeline li div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+#userTimeline li div div {
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    margin: 0 0 0 15px;
+}
+
+#userTimeline li div div a {
+    margin: 2px;
+}
+
+#userTimeline .postDivider {
+    border-bottom: 2px solid #db8000;
+    margin: 0 25px;
+}
+
+#userTimeline ul:first-of-type {
+    margin: 0 0 35px 0;
+    padding: 15px 0 0 0;
+}
+
+#userTimeline ul {
+    margin: 35px 0;
+
+}
+
+#userTimeline ul:last-of-type {
+    margin: 35px 0 0 0;
+    padding: 0 0 15px 0;
+}
+#userTimeline li {
+    margin: 10px 0;
+    padding: 0 15px;
+}
+
+#userTimeline li:not(:first-of-type) {
+    margin: 20px 0;
+}
+
+#userTimeline li a { 
+    text-decoration: none;
+    color: #020057;
+}
+
+#userTimeline li img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+    padding: 2px;
+    
+}

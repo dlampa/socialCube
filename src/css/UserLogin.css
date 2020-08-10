@@ -1,0 +1,114 @@
+/* UserLogin */
+
+#loginControls {
+    background-color: #020057;
+    height:100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+}
+
+#loginControls button {
+    border: none;
+    color: #e7e7e8;
+    background-color: #00b9b5;
+    padding: 10px;
+    margin: 15px 0;
+    width: 100px;
+    border-radius: 8px;
+}
+
+#loginControls button:nth-child(2) {
+    background-color: #db8000;
+}
+
+#loginControls form { 
+    justify-self: flex-start;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin: 5px 0 0 0;
+}
+
+#loginControls form label {
+    color: #e7e7e8;
+    align-self: flex-start;
+    margin: 10px 0;
+}
+
+#loginControls form button {
+    width: 100px;
+    margin: 25px 0 0 0;
+}
+
+#loginControls form input {
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+#loginControls .errMsg {
+    color: #b6b300;
+    margin: 5px 0;
+
+}
+
+/* LoginPage menu control */
+
+#profileMenu {
+    align-self: center;
+}
+
+#profileMenu li {
+    padding: 8px 15px;
+}
+
+#profileMenu .profileMenuDivider {
+    box-sizing: border-box;
+    line-height: 0;
+    height: 1px;
+    padding: 0;
+    border: 1px solid #020057;
+    margin: 11px 0;
+}
+#profileMenu img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    padding: 3px;
+    border: 2px solid #e7e7e8;
+    cursor: pointer;
+}
+
+#profileMenu ul {
+    background-color: #e7e7e8;
+    position: absolute;
+    padding: 10px 0;
+    min-width: 90px;
+    margin-top: 5px;
+    right: 10px;
+    border: 1px solid #020057;
+    border-radius: 6px;
+}
+
+
+#profileMenu li:hover {
+    background-color: #020057;
+    color: #e7e7e8;
+    transition: all 0.5s ease-in;
+
+}
+
+#profileMenu a {
+    text-decoration: none;
+    color: #020057;
+}
+
+#profileMenu a:hover, #profileMenu li:hover a  {
+    color: #e7e7e8;
+    transition: all 0.5s ease-in;
+
+}

@@ -3,18 +3,6 @@ import { connect } from 'react-redux';
 
 import './css/App.css';
 
-
-// This component receives a username prop from the parent (UserProfilePage)
-// Then, the connect() block fetches the data for the requested user from Redux store
-// Then this component displays the information stored in the props.
-
-
-    //in <h1> populate userName props passed in from UserProfilePage file. Use proper syntax.
-    //in <p>  populate userDescription, userEmail and userBirthday props passed in from UserProfilePage file. 
-    // and use <span> inside each paragraph to seperate content for styling purposes. Use proper syntax.
-    //added <a> href element to create a link for the userEmail so that it's clickable and can go straight to email. 
-    //should we write props like this?  profile:[userName: "Name Surname", description: "Climate and Environmental Scientist", contact:"email:name.surname@gmail.com" birth: "April 1, 1985"]
-
 class UserProfileSummary extends React.Component 
 {
     constructor(props)
@@ -44,6 +32,7 @@ class UserProfileSummary extends React.Component
 
 export default connect(
     (state, ownProps) => {
+        // Deconstruct store to extract profile information
         const userProfiles = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { profile: userProfileItems } } = userObject;
@@ -55,7 +44,7 @@ export default connect(
             const user = ownProps.userProfile;
             // Extract user profile information
             const [{ [user]: userProfileItems }] = userProfiles.filter(userObject => Object.keys(userObject).toString() === user.toString());
-            // Save user profile information into the
+            // Save user profile information into the object userInfo
             userInfo = ({
                 userFullName: userProfileItems.fullName,
                 userEmail: userProfileItems.emailAddress,

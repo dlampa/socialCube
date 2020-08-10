@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { loginUser, logOffUser } from './actions';
 
-class UserLogin2 extends React.Component {
+import './css/UserLogin.css';
+
+class UserLogin extends React.Component {
     constructor(props) {
         super(props);
 
@@ -17,6 +19,7 @@ class UserLogin2 extends React.Component {
         };
     }
 
+    // Save values into the local state and clear error display 
     updateState = (event) => {
         this.setState({ [event.target.name]: event.target.value });
         this.setState({ errorLogin: -1 });
@@ -47,7 +50,7 @@ class UserLogin2 extends React.Component {
             // If true: 1. mark the user as logged in by using a loginUser action from the redux store
             this.props.dispatch(loginUser(this.state.loginUsername));
             // 2. Redirect the user to his TimelinePage component
-            this.props.history.push("/timeline/");
+            this.props.history.push(process.env.PUBLIC_URL + "/timeline/");
         } else {
             // If false: display error message 
             this.setState({ errorLogin: 1 });
@@ -57,22 +60,21 @@ class UserLogin2 extends React.Component {
     userLogoff = (event) => {
         event.preventDefault();
         this.props.dispatch(logOffUser(this.props.currentUser));
-        this.props.history.push("/");
+        this.props.history.push(process.env.PUBLIC_URL +"/");
+        return null;
     };
-
-    showUserProfile = (event) => {
-        // this.props.history.push("/profile/" + this.props.currentUser);
-        // return <Redirect to={"/profile/" + this.props.currentUser} />
-    }
 
     showProfileMenu = () => {
         this.setState({ showMenu: !this.state.showMenu });
     }
 
     render() { 
-        // If user is logged in, display a log off button
-        if (this.props.currentUser) {
+        
+        // Display a menu if the user is logged in, instead of the normal Login/Signup dialog
+        if (this.props.currentUser !== undefined) {
             const currentUser = this.props.currentUser;
+            
+            // Get the profile image of the user by deconstructing the data from Redux store
             const userProfilePic = this.props.userProfilePic.map(
                 (userProfilePicObj) => {
                     if (Object.keys(userProfilePicObj).toString() === currentUser) {
@@ -83,13 +85,14 @@ class UserLogin2 extends React.Component {
                     }
                 }).filter(userProfilePicObj => userProfilePicObj !== null);
         
+            // Render menu
             return (
                 <div id="profileMenu">
                     <img src={require("./img/" + userProfilePic)} alt="User profile" onClick={this.showProfileMenu} />
                     {this.state.showMenu ? (
                         <ul>
-                            <li><Link to={"/profile/" + this.props.currentUser} onClick={this.showProfileMenu}>My profile</Link></li>
-                            <li><Link to={"/timeline/"}>My timeline</Link></li>
+                            <li><Link to={process.env.PUBLIC_URL +"/profile/" + this.props.currentUser} onClick={this.showProfileMenu}>My profile</Link></li>
+                            <li><Link to={process.env.PUBLIC_URL + "/timeline/"} onClick={this.showProfileMenu}>My timeline</Link></li>
                             <li className="profileMenuDivider"></li>
                             <li><Link to="#" onClick={(event) => this.userLogoff(event)}>Log off</Link></li>
                         </ul>) : null}
@@ -121,18 +124,25 @@ class UserLogin2 extends React.Component {
 
 export default withRouter(connect(
     (state) => {
+        // Get the username of the currently logged in user (or undefined if none)
         const [loggedInUser] = state.map(userObject => {
+            // Take the key from the userObject as it represents the username, store it in userIter
             const userIter = Object.keys(userObject).toString();
+            // Deconstruct the userObject object to obtain the value of isLoggedIn key 
             const { [userIter]: { auth: { isLoggedIn: loginStatus } } } = userObject;
-            if (loginStatus) { return userIter } else return undefined;
-        }).filter(userObject => (userObject !== undefined));
+            // If loginStatus is true, return the name of the user otherwise return null
+            return loginStatus ? userIter : null;
+            // Filter out the resulting array to obtain only the logged in user's name
+        }).filter(userObject => (userObject !== null));
 
+        // Get user authentication data for login checks
         const userAuthInfo = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { auth: { password: userPass } } } = userObject;
             return { [userIter]: userPass };
         });
 
+        // Get profile pictures for different users
         const userProfilePic = state.map(userObject => {
             const userIter = Object.keys(userObject).toString();
             const { [userIter]: { profile: { profilePicture: retUserProfilePic } } } = userObject;
@@ -140,11 +150,10 @@ export default withRouter(connect(
         })
 
         return {
-            userData: state,
             currentUser: loggedInUser,
             userProfilePic: userProfilePic,
             authInfo: userAuthInfo
         }
     }
-)(UserLogin2));
+)(UserLogin));
 

@@ -1,0 +1,30 @@
+/* UserPost */
+
+.postFullName {
+    font-weight: 700;
+    font-size: large;
+}
+
+.postUsername:before {
+    content: '@';
+}
+
+.postUsername {
+    font-weight: 400;
+    display: block;
+}
+
+.postTimestamp {
+    display: block;
+    font-size: smaller;
+    text-align: right;
+}
+
+.postText {
+    display: block;
+    margin: 10px 0;
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 5px;
+    line-height: 1.4;
+}

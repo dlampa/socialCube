@@ -1,0 +1,21 @@
+/* Search */
+
+#searchPage {
+    flex-flow: column nowrap;
+}
+
+#searchForm {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+#searchForm input {
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+#searchTermInput {
+    width: 100%;
+}

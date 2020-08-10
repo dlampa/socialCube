@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import './css/TimelinePage.css';
+
 import UserPost from './UserPost';
 
 // This is UserPosts

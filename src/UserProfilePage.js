@@ -47,7 +47,7 @@ class UserProfilePage extends React.Component {
             );
         } else {
             // If false: send the user to the LoginPage (App.js or "/" )
-            this.props.history.push("/");
+            this.props.history.push(process.env.PUBLIC_URL + "/");
             return null;
         }
     }

@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import './css/Search.css';
+
 class Search extends React.Component {
     constructor(props)
     {
@@ -12,23 +14,15 @@ class Search extends React.Component {
 
     submitSearch = (event) => {
         event.preventDefault();
-        // Check if the searchTerm contains any whitespace/symbols/etc.
-        
         // Redirect user if the search box contains something meaningful
         if (this.state.searchTerm.trim() !== "") {
-            this.props.history.push("/search/" + this.state.searchTerm.trim());
+            // Use trim to remove extra spaces
+            this.props.history.push(process.env.PUBLIC_URL + "/search/" + this.state.searchTerm.trim());
         }
         return null;
     };
 
     updateSearchState = (event) => {
-        // Use a regular expression to find irregular characters
-        //const regexIllegalChars = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g;
-
-        // Replace irregular characters with an empty string
-        // const cleanSearchTerm = event.target.value.replace(regexIllegalChars, "");
-        
-
         // Save value to state (which will be displayed inside the Search box as well)
         this.setState({ searchTerm: event.target.value });
     }
