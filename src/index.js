@@ -32,8 +32,8 @@ import SearchPage from './SearchPage';
 const createStoreAsync = async () => {
   let store = createStore(
     userDataReducer,
-    await populateStore(null));
-    //,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); // Redux devtools
+    await populateStore(null),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); // Redux devtools
   return await store;
 }
 

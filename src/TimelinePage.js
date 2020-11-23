@@ -15,7 +15,7 @@ class TimelinePage extends React.Component {
     render() {
         if (this.props.loggedInUser === undefined) {
             // Redirect to login if loggedInUser is undefined (i.e. noone is logged in)
-            this.props.history.push("/");
+            this.props.history.push(process.env.PUBLIC_URL + "/");
             return null;
         } else {
 
